@@ -174,6 +174,64 @@ async function getTokenData() {
 - `axios` package
 - `express` package
 
+## Express.js Integration
+
+This SDK can be easily integrated with Express.js to create your own API endpoints that leverage Token Metrics data:
+
+```javascript
+const express = require('express');
+const cors = require('cors');
+const { TokenMetricsClient } = require('tm-api-sdk-javascript');
+
+// Initialize the Token Metrics client
+const tmClient = new TokenMetricsClient('your-api-key');
+
+// Create Express app
+const app = express();
+const port = 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Get tokens endpoint
+app.get('/api/tokens/:symbol', async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    const result = await tmClient.tokens.get({ symbol });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get trading signals endpoint
+app.get('/api/trading-signals/:symbol', async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    const { startDate, endDate, signal } = req.query;
+    
+    const result = await tmClient.tradingSignals.get({
+      symbol,
+      startDate,
+      endDate,
+      signal
+    });
+    
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+```
+
+For a complete Express.js server example, see the [examples/express-server.js](examples/express-server.js) file.
+
 ## Documentation
 
 For complete API documentation, visit:
