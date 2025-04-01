@@ -15,6 +15,14 @@ class TokenMetricsClient {
   constructor(apiKey) {
     this.apiKey = apiKey;
     
+    const TokensEndpoint = require('./endpoints/tokens');
+    const AIAgentEndpoint = require('./endpoints/ai_agent');
+    const TradingSignalsEndpoint = require('./endpoints/trading_signals');
+    
+    this.tokens = new TokensEndpoint(this);
+    this.aiAgent = new AIAgentEndpoint(this);
+    this.tradingSignals = new TradingSignalsEndpoint(this);
+    
   }
 }
 
