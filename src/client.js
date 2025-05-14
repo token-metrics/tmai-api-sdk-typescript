@@ -35,11 +35,8 @@ class TokenMetricsClient {
     const QuantmetricsEndpoint = require('./endpoints/quantmetrics');
     const ScenarioAnalysisEndpoint = require('./endpoints/scenario_analysis');
     const CorrelationEndpoint = require('./endpoints/correlation');
-    const IndexHoldingsEndpoint = require('./endpoints/index_holdings');
     const SectorIndicesHoldingsEndpoint = require('./endpoints/sector_indices_holdings');
-    const IndicesPerformanceEndpoint = require('./endpoints/indices_performance');
     const SectorIndicesPerformanceEndpoint = require('./endpoints/sector_indices_performance');
-    const IndexTransactionEndpoint = require('./endpoints/index_transaction');
     const SectorIndexTransactionEndpoint = require('./endpoints/sector_index_transaction');
     
     this.tokens = new TokensEndpoint(this);
@@ -62,11 +59,8 @@ class TokenMetricsClient {
     this.quantmetrics = new QuantmetricsEndpoint(this);
     this.scenarioAnalysis = new ScenarioAnalysisEndpoint(this);
     this.correlation = new CorrelationEndpoint(this);
-    this.indexHoldings = new IndexHoldingsEndpoint(this);
     this.sectorIndicesHoldings = new SectorIndicesHoldingsEndpoint(this);
-    this.indicesPerformance = new IndicesPerformanceEndpoint(this);
     this.sectorIndicesPerformance = new SectorIndicesPerformanceEndpoint(this);
-    this.indexTransaction = new IndexTransactionEndpoint(this);
     this.sectorIndexTransaction = new SectorIndexTransactionEndpoint(this);
   }
 }

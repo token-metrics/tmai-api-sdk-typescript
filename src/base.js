@@ -140,11 +140,8 @@ class BaseEndpoint {
       'quantmetrics': 1000,
       'scenario-analysis': 1000,
       'correlation': 1000,
-      'index-holdings': 1000,
       'sector-indices-holdings': 1000,
-      'indices-performance': 1000,
       'index-specific-performance': 1000,
-      'indices-transaction': 1000,
       'sector-index-transaction': 1000,
       'default': 1000
     };

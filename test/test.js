@@ -211,11 +211,6 @@ async function testNewEndpoints() {
     }
     
     if (indexId) {
-      console.log('\nTesting index holdings endpoint...');
-      const indexHoldings = await client.indexHoldings.get({ index_id: indexId });
-      assert(indexHoldings.data !== undefined, 'Index holdings endpoint failed');
-      console.log(`✅ Index holdings endpoint: Retrieved ${indexHoldings.data.length} holdings`);
-      
       console.log('\nTesting sector indices holdings endpoint...');
       const sectorIndicesHoldings = await client.sectorIndicesHoldings.get({ index_id: indexId });
       assert(sectorIndicesHoldings.data !== undefined, 'Sector indices holdings endpoint failed');
@@ -230,15 +225,6 @@ async function testNewEndpoints() {
       assert(sectorIndicesPerformance.data !== undefined, 'Sector indices performance endpoint failed');
       console.log(`✅ Sector indices performance endpoint: Retrieved ${sectorIndicesPerformance.data.length} data points`);
       
-      console.log('\nTesting index transaction endpoint...');
-      const indexTransaction = await client.indexTransaction.get({ 
-        index_id: indexId,
-        startDate: tenDaysAgo.toISOString().split('T')[0],
-        endDate: yesterday.toISOString().split('T')[0]
-      });
-      assert(indexTransaction.data !== undefined, 'Index transaction endpoint failed');
-      console.log(`✅ Index transaction endpoint: Retrieved ${indexTransaction.data.length} transactions`);
-      
       console.log('\nTesting sector index transaction endpoint...');
       const sectorIndexTransaction = await client.sectorIndexTransaction.get({ 
         index_id: indexId,
@@ -250,14 +236,6 @@ async function testNewEndpoints() {
     } else {
       console.log('\n⚠️ Could not test index-related endpoints because no index_id was found');
     }
-    
-    console.log('\nTesting indices performance endpoint...');
-    const indicesPerformance = await client.indicesPerformance.get({ 
-      startDate: tenDaysAgo.toISOString().split('T')[0],
-      endDate: yesterday.toISOString().split('T')[0]
-    });
-    assert(indicesPerformance.data !== undefined, 'Indices performance endpoint failed');
-    console.log(`✅ Indices performance endpoint: Retrieved ${indicesPerformance.data.length} data points`);
     
   } catch (error) {
     console.error(`❌ New endpoints test failed: ${error.message}`);
