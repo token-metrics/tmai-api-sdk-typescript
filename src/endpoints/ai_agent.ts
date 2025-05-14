@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { AIAgentMessage, AIAgentResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { AIAgentMessage, AIAgentResponse } from '../types';
 
 /**
  * Endpoint for accessing the AI Agent (chatbot) for token insights

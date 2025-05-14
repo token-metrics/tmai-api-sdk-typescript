@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { ApiResponse } from '../types';
 
 /**
  * Interface for crypto investor data

@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { 
   ApiResponse, 
-  EndpointLimits,
-  DateRangeParams
-} from './types.js';
+  EndpointLimits
+} from './types';
 
 /**
  * Base class for all API endpoints

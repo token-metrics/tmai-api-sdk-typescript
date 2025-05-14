@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { DateRangeParams, MarketMetricsData, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { DateRangeParams, MarketMetricsData, ApiResponse } from '../types';
 
 /**
  * Endpoint for accessing overall market data

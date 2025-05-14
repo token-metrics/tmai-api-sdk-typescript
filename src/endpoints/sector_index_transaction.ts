@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { DateRangeParams, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { DateRangeParams, ApiResponse } from '../types';
 
 /**
  * Interface for sector index transaction data

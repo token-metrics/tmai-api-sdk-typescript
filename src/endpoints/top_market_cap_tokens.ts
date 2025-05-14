@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { Token, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { Token, ApiResponse } from '../types';
 
 /**
  * Endpoint for accessing top tokens by market capitalization

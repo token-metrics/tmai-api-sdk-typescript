@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { TokenFilterParams, DateRangeParams, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { TokenFilterParams, DateRangeParams, ApiResponse } from '../types';
 
 /**
  * Interface for sentiment data

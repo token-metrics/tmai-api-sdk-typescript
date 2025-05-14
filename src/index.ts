@@ -1,5 +1,5 @@
-import { TokenMetricsClient } from './client.js';
-import { BaseEndpoint } from './base.js';
+import { TokenMetricsClient } from './client';
+import { BaseEndpoint } from './base';
 
 export {
   TokenMetricsClient,

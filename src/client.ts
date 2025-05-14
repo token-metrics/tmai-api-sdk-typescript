@@ -1,27 +1,26 @@
-import { ClientOptions } from './types.js';
 
-import { TokensEndpoint } from './endpoints/tokens.js';
-import { AIAgentEndpoint } from './endpoints/ai_agent.js';
-import { TradingSignalsEndpoint } from './endpoints/trading_signals.js';
-import { HourlyOHLCVEndpoint } from './endpoints/hourly_ohlcv.js';
-import { DailyOHLCVEndpoint } from './endpoints/daily_ohlcv.js';
-import { InvestorGradesEndpoint } from './endpoints/investor_grades.js';
-import { TraderGradesEndpoint } from './endpoints/trader_grades.js';
-import { TraderIndicesEndpoint } from './endpoints/trader_indices.js';
-import { MarketMetricsEndpoint } from './endpoints/market_metrics.js';
-import { AIReportsEndpoint } from './endpoints/ai_reports.js';
-import { InvestorIndicesEndpoint } from './endpoints/investor_indices.js';
-import { CryptoInvestorsEndpoint } from './endpoints/crypto_investors.js';
-import { TopMarketCapTokensEndpoint } from './endpoints/top_market_cap_tokens.js';
-import { ResistanceSupportEndpoint } from './endpoints/resistance_support.js';
-import { PriceEndpoint } from './endpoints/price.js';
-import { SentimentEndpoint } from './endpoints/sentiment.js';
-import { QuantmetricsEndpoint } from './endpoints/quantmetrics.js';
-import { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis.js';
-import { CorrelationEndpoint } from './endpoints/correlation.js';
-import { SectorIndicesHoldingsEndpoint } from './endpoints/sector_indices_holdings.js';
-import { SectorIndicesPerformanceEndpoint } from './endpoints/sector_indices_performance.js';
-import { SectorIndexTransactionEndpoint } from './endpoints/sector_index_transaction.js';
+import { TokensEndpoint } from './endpoints/tokens';
+import { AIAgentEndpoint } from './endpoints/ai_agent';
+import { TradingSignalsEndpoint } from './endpoints/trading_signals';
+import { HourlyOHLCVEndpoint } from './endpoints/hourly_ohlcv';
+import { DailyOHLCVEndpoint } from './endpoints/daily_ohlcv';
+import { InvestorGradesEndpoint } from './endpoints/investor_grades';
+import { TraderGradesEndpoint } from './endpoints/trader_grades';
+import { TraderIndicesEndpoint } from './endpoints/trader_indices';
+import { MarketMetricsEndpoint } from './endpoints/market_metrics';
+import { AIReportsEndpoint } from './endpoints/ai_reports';
+import { InvestorIndicesEndpoint } from './endpoints/investor_indices';
+import { CryptoInvestorsEndpoint } from './endpoints/crypto_investors';
+import { TopMarketCapTokensEndpoint } from './endpoints/top_market_cap_tokens';
+import { ResistanceSupportEndpoint } from './endpoints/resistance_support';
+import { PriceEndpoint } from './endpoints/price';
+import { SentimentEndpoint } from './endpoints/sentiment';
+import { QuantmetricsEndpoint } from './endpoints/quantmetrics';
+import { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis';
+import { CorrelationEndpoint } from './endpoints/correlation';
+import { SectorIndicesHoldingsEndpoint } from './endpoints/sector_indices_holdings';
+import { SectorIndicesPerformanceEndpoint } from './endpoints/sector_indices_performance';
+import { SectorIndexTransactionEndpoint } from './endpoints/sector_index_transaction';
 
 /**
  * Main client for interacting with the Token Metrics AI API.

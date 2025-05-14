@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { DateRangeParams, CorrelationData, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { DateRangeParams, CorrelationData, ApiResponse } from '../types';
 
 /**
  * Endpoint for retrieving price correlation data between tokens

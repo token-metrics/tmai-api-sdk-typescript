@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { TokenFilterParams, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { TokenFilterParams, ApiResponse } from '../types';
 
 /**
  * Interface for scenario analysis data

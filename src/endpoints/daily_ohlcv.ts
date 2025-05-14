@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { OHLCVData, TokenFilterParams, DateRangeParams, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { OHLCVData, TokenFilterParams, DateRangeParams, ApiResponse } from '../types';
 
 /**
  * Endpoint for accessing daily OHLCV (Open, High, Low, Close, Volume) data

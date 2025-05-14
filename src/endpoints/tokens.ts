@@ -1,6 +1,6 @@
-import { BaseEndpoint } from '../base.js';
-import { Token, TokenFilterParams } from '../types.js';
-import { ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { Token, TokenFilterParams } from '../types';
+import { ApiResponse } from '../types';
 
 /**
  * Endpoint for accessing token information

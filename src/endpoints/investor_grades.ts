@@ -1,5 +1,5 @@
-import { BaseEndpoint } from '../base.js';
-import { GradeData, TokenFilterParams, DateRangeParams, ApiResponse } from '../types.js';
+import { BaseEndpoint } from '../base';
+import { GradeData, TokenFilterParams, DateRangeParams, ApiResponse } from '../types';
 
 /**
  * Endpoint for accessing long-term investment grades
