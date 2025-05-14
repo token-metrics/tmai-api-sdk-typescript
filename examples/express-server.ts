@@ -1,5 +1,5 @@
 /**
- * Example Express.js server that uses the Token Metrics AI API JavaScript SDK
+ * Example Express.js server that uses the Token Metrics AI API TypeScript SDK
  * 
  * This example demonstrates how to integrate the SDK with an Express.js server
  * to create your own API endpoints that leverage Token Metrics data.
@@ -7,13 +7,13 @@
  * To run this example:
  * 1. Install dependencies: npm install express cors
  * 2. Set your API key: export TM_API_KEY=your_api_key
- * 3. Run the server: node express-server.js
+ * 3. Run the server: ts-node express-server.ts
  * 4. Access the API at http://localhost:3000
  */
 
-const express = require('express');
-const cors = require('cors');
-const { TokenMetricsClient } = require('../src/index');
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import { TokenMetricsClient } from '../src/index.js';
 
 const apiKey = process.env.TM_API_KEY;
 
@@ -31,7 +31,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', (_req: Request, res: Response) => {
   res.json({
     message: 'Token Metrics AI API Express Server',
     endpoints: [
@@ -50,124 +50,124 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/api/tokens', async (req, res) => {
+app.get('/api/tokens', async (_req: Request, res: Response) => {
   try {
     const result = await tmClient.tokens.get();
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/tokens/:symbol', async (req, res) => {
+app.get('/api/tokens/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const result = await tmClient.tokens.get({ symbol });
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/hourly-ohlcv/:symbol', async (req, res) => {
+app.get('/api/hourly-ohlcv/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.hourlyOhlcv.get({
       symbol,
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/daily-ohlcv/:symbol', async (req, res) => {
+app.get('/api/daily-ohlcv/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.dailyOhlcv.get({
       symbol,
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/investor-grades/:symbol', async (req, res) => {
+app.get('/api/investor-grades/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.investorGrades.get({
       symbol,
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/trader-grades/:symbol', async (req, res) => {
+app.get('/api/trader-grades/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.traderGrades.get({
       symbol,
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/trader-indices', async (req, res) => {
+app.get('/api/trader-indices', async (req: Request, res: Response) => {
   try {
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.traderIndices.get({
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/market-metrics', async (req, res) => {
+app.get('/api/market-metrics', async (req: Request, res: Response) => {
   try {
     const { startDate, endDate } = req.query;
     
     const result = await tmClient.marketMetrics.get({
-      startDate,
-      endDate
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/ai-reports/:symbol', async (req, res) => {
+app.get('/api/ai-reports/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     
@@ -177,29 +177,33 @@ app.get('/api/ai-reports/:symbol', async (req, res) => {
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.get('/api/trading-signals/:symbol', async (req, res) => {
+app.get('/api/trading-signals/:symbol', async (req: Request, res: Response) => {
   try {
     const { symbol } = req.params;
     const { startDate, endDate, signal } = req.query;
     
     const result = await tmClient.tradingSignals.get({
       symbol,
-      startDate,
-      endDate,
-      signal
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined,
+      signal: signal as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
-app.post('/api/ai-agent/ask', async (req, res) => {
+interface AskRequest {
+  question?: string;
+}
+
+app.post('/api/ai-agent/ask', async (req: Request<{}, {}, AskRequest>, res: Response) => {
   try {
     const { question } = req.body;
     
@@ -210,7 +214,7 @@ app.post('/api/ai-agent/ask', async (req, res) => {
     const result = await tmClient.aiAgent.ask(question);
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
   }
 });
 
