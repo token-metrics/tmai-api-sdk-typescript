@@ -14,6 +14,7 @@ The official TypeScript SDK for Token Metrics AI API - providing professional in
 - **AI Agent**: Interact with Token Metrics' AI chatbot for market insights
 - **AI Reports**: Access detailed technical, fundamental, and trading reports
 - **Simple Interface**: Intuitive API with Express.js integration
+- **JavaScript & TypeScript Compatible**: Works with both JavaScript and TypeScript projects
 
 ## Installation
 
@@ -24,6 +25,8 @@ npm install tmai-api
 You can find the package on npm at: [tmai-api](https://www.npmjs.com/package/tmai-api)
 
 ## Quick Start
+
+### TypeScript Usage
 
 ```typescript
 import { TokenMetricsClient } from 'tmai-api';
@@ -58,13 +61,48 @@ client.investorGrades.get({
   });
 
 // Ask the AI agent a question
-client.aiAgent.getAnswerText('What is your analysis of Bitcoin?')
+client.aiAgent.ask('What is your analysis of Bitcoin?')
   .then(answer => {
     console.log(answer);
   });
 
 // Using async/await with type annotations
 async function getTokenData(): Promise<void> {
+  const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
+  console.log(tokens);
+}
+```
+
+### JavaScript Usage
+
+```javascript
+// ES Modules
+import { TokenMetricsClient } from 'tmai-api';
+
+// OR CommonJS
+// const { TokenMetricsClient } = require('tmai-api');
+
+// Initialize the client with your API key
+const client = new TokenMetricsClient('your-api-key');
+
+// Get information for top cryptocurrencies
+client.tokens.get({ symbol: 'BTC,ETH' })
+  .then(tokens => {
+    console.log(tokens);
+  });
+
+// Get short-term trading grades
+client.traderGrades.get({
+  symbol: 'BTC,ETH',
+  startDate: '2023-10-01',
+  endDate: '2023-10-10'
+})
+  .then(traderGrades => {
+    console.log(traderGrades);
+  });
+
+// Using async/await
+async function getTokenData() {
   const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
   console.log(tokens);
 }
