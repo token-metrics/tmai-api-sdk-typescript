@@ -93,11 +93,8 @@ async function getTokenData() {
 | `quantmetrics` | Quantitative metrics | `client.quantmetrics.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `scenarioAnalysis` | Market scenario analysis | `client.scenarioAnalysis.get({ symbol: 'BTC' })` |
 | `correlation` | Asset correlation data | `client.correlation.get({ base_symbol: 'BTC', quote_symbol: 'ETH', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `indexHoldings` | Index holdings data | `client.indexHoldings.get({ index_id: 'index_id' })` |
 | `sectorIndicesHoldings` | Sector indices holdings | `client.sectorIndicesHoldings.get({ index_id: 'index_id' })` |
-| `indicesPerformance` | Indices performance data | `client.indicesPerformance.get({ startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `sectorIndicesPerformance` | Sector indices performance | `client.sectorIndicesPerformance.get({ index_id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `indexTransaction` | Index transaction data | `client.indexTransaction.get({ index_id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `sectorIndexTransaction` | Sector index transaction data | `client.sectorIndexTransaction.get({ index_id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 
 
