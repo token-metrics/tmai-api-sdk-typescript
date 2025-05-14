@@ -3,7 +3,6 @@
  */
 
 import { TokenMetricsClient } from '../src/index.js';
-import assert from 'assert';
 
 const apiKey = "tm-a123f8d9-2cde-4e50-af3b-c5e2b7ffcc81";
 const client = new TokenMetricsClient(apiKey);
