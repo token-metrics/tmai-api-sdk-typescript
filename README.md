@@ -1,8 +1,8 @@
-# Token Metrics AI API JavaScript SDK
+# Token Metrics AI API TypeScript SDK
 
 [![npm version](https://badge.fury.io/js/tmai-api.svg)](https://www.npmjs.com/package/tmai-api)
 
-The official JavaScript SDK for Token Metrics AI API - providing professional investors and traders with comprehensive cryptocurrency analysis, AI-powered trading signals, market data, and advanced insights.
+The official TypeScript SDK for Token Metrics AI API - providing professional investors and traders with comprehensive cryptocurrency analysis, AI-powered trading signals, market data, and advanced insights.
 
 ## Features
 
@@ -25,8 +25,8 @@ You can find the package on npm at: [tmai-api](https://www.npmjs.com/package/tma
 
 ## Quick Start
 
-```javascript
-const { TokenMetricsClient } = require('tmai-api');
+```typescript
+import { TokenMetricsClient } from 'tmai-api';
 
 // Initialize the client with your API key
 const client = new TokenMetricsClient('your-api-key');
@@ -63,8 +63,8 @@ client.aiAgent.getAnswerText('What is your analysis of Bitcoin?')
     console.log(answer);
   });
 
-// Using async/await
-async function getTokenData() {
+// Using async/await with type annotations
+async function getTokenData(): Promise<void> {
   const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
   console.log(tokens);
 }
@@ -111,7 +111,7 @@ const client = new TokenMetricsClient('your-api-key');
 
 The SDK provides built-in error handling for API requests:
 
-```javascript
+```typescript
 client.tokens.get({ symbol: 'INVALID_SYMBOL' })
   .then(data => {
     console.log(data);
@@ -122,12 +122,16 @@ client.tokens.get({ symbol: 'INVALID_SYMBOL' })
   });
 
 // Using async/await with try/catch
-async function getTokenData() {
+async function getTokenData(): Promise<void> {
   try {
     const data = await client.tokens.get({ symbol: 'INVALID_SYMBOL' });
     console.log(data);
-  } catch (error) {
-    console.error('Error:', error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error:', error.message);
+    } else {
+      console.error('Unknown error:', error);
+    }
     // Handle the error appropriately
   }
 }
@@ -143,10 +147,10 @@ async function getTokenData() {
 
 This SDK can be easily integrated with Express.js to create your own API endpoints that leverage Token Metrics data:
 
-```javascript
-const express = require('express');
-const cors = require('cors');
-const { TokenMetricsClient } = require('tm-api-sdk-javascript');
+```typescript
+import express from 'express';
+import cors from 'cors';
+import { TokenMetricsClient } from 'tmai-api';
 
 // Initialize the Token Metrics client
 const tmClient = new TokenMetricsClient('your-api-key');
@@ -166,7 +170,11 @@ app.get('/api/tokens/:symbol', async (req, res) => {
     const result = await tmClient.tokens.get({ symbol });
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: 'Unknown error occurred' });
+    }
   }
 });
 
@@ -178,14 +186,18 @@ app.get('/api/trading-signals/:symbol', async (req, res) => {
     
     const result = await tmClient.tradingSignals.get({
       symbol,
-      startDate,
-      endDate,
-      signal
+      startDate: startDate as string | undefined,
+      endDate: endDate as string | undefined,
+      signal: signal as string | undefined
     });
     
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: 'Unknown error occurred' });
+    }
   }
 });
 
