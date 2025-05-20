@@ -20,7 +20,6 @@ Main client for interacting with the Token Metrics AI API.
 - [dailyOhlcv](TokenMetricsClient.md#dailyohlcv)
 - [hourlyOhlcv](TokenMetricsClient.md#hourlyohlcv)
 - [investorGrades](TokenMetricsClient.md#investorgrades)
-- [investorIndices](TokenMetricsClient.md#investorindices)
 - [marketMetrics](TokenMetricsClient.md#marketmetrics)
 - [price](TokenMetricsClient.md#price)
 - [quantmetrics](TokenMetricsClient.md#quantmetrics)
@@ -33,7 +32,6 @@ Main client for interacting with the Token Metrics AI API.
 - [tokens](TokenMetricsClient.md#tokens)
 - [topMarketCapTokens](TokenMetricsClient.md#topmarketcaptokens)
 - [traderGrades](TokenMetricsClient.md#tradergrades)
-- [traderIndices](TokenMetricsClient.md#traderindices)
 - [tradingSignals](TokenMetricsClient.md#tradingsignals)
 - [BASE\_URL](TokenMetricsClient.md#base_url)
 
@@ -140,16 +138,6 @@ ___
 #### Defined in
 
 [client.ts:47](https://github.com/token-metrics/tmai-api-sdk-javascript/blob/ad1a6be01cc667f1988de9933d7cf75a657e9d1f/src/client.ts#L47)
-
-___
-
-### investorIndices
-
-• `Readonly` **investorIndices**: `InvestorIndicesEndpoint`
-
-#### Defined in
-
-[client.ts:52](https://github.com/token-metrics/tmai-api-sdk-javascript/blob/ad1a6be01cc667f1988de9933d7cf75a657e9d1f/src/client.ts#L52)
 
 ___
 
@@ -272,16 +260,6 @@ ___
 #### Defined in
 
 [client.ts:48](https://github.com/token-metrics/tmai-api-sdk-javascript/blob/ad1a6be01cc667f1988de9933d7cf75a657e9d1f/src/client.ts#L48)
-
-___
-
-### traderIndices
-
-• `Readonly` **traderIndices**: `TraderIndicesEndpoint`
-
-#### Defined in
-
-[client.ts:49](https://github.com/token-metrics/tmai-api-sdk-javascript/blob/ad1a6be01cc667f1988de9933d7cf75a657e9d1f/src/client.ts#L49)
 
 ___
 
