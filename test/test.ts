@@ -95,14 +95,6 @@ async function testExistingEndpoints(): Promise<void> {
   assert(traderGrades.data && traderGrades.data.length > 0, 'Trader grades endpoint failed');
   console.log(`✅ Trader grades endpoint: Retrieved ${traderGrades.data.length} grades`);
   
-  console.log('\nTesting trader indices endpoint...');
-  const traderIndices = await client.traderIndices.get({ 
-    startDate: tenDaysAgo.toISOString().split('T')[0], 
-    endDate: yesterday.toISOString().split('T')[0] 
-  });
-  assert(traderIndices.data && traderIndices.data.length > 0, 'Trader indices endpoint failed');
-  console.log(`✅ Trader indices endpoint: Retrieved ${traderIndices.data.length} indices`);
-  
   console.log('\nTesting market metrics endpoint...');
   const marketMetrics = await client.marketMetrics.get({ 
     startDate: tenDaysAgo.toISOString().split('T')[0], 
@@ -143,10 +135,6 @@ async function testNewEndpoints(): Promise<void> {
     yesterday.setDate(yesterday.getDate() - 1);
     const tenDaysAgo = new Date(today);
     tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
-    console.log('\nTesting investor indices endpoint...');
-    const investorIndices = await client.investorIndices.get();
-    assert(investorIndices.data !== undefined, 'Investor indices endpoint failed');
-    console.log(`✅ Investor indices endpoint: Retrieved ${investorIndices.data.length} indices`);
     
     console.log('\nTesting crypto investors endpoint...');
     const cryptoInvestors = await client.cryptoInvestors.get();
@@ -205,37 +193,28 @@ async function testNewEndpoints(): Promise<void> {
     assert(correlation.data !== undefined, 'Correlation endpoint failed');
     console.log(`✅ Correlation endpoint: Retrieved ${correlation.data.length} data points`);
     
-    let indexId: string | null = null;
-    if (investorIndices.data && investorIndices.data.length > 0) {
-      indexId = investorIndices.data[0].INDEX_ID;
-    }
+    console.log('\nTesting sector indices holdings endpoint...');
+    const sectorIndicesHoldings = await client.sectorIndicesHoldings.get({ index_id: 'index_id' });
+    assert(sectorIndicesHoldings.data !== undefined, 'Sector indices holdings endpoint failed');
+    console.log(`✅ Sector indices holdings endpoint: Retrieved ${sectorIndicesHoldings.data.length} holdings`);
     
-    if (indexId) {
-      console.log('\nTesting sector indices holdings endpoint...');
-      const sectorIndicesHoldings = await client.sectorIndicesHoldings.get({ index_id: indexId });
-      assert(sectorIndicesHoldings.data !== undefined, 'Sector indices holdings endpoint failed');
-      console.log(`✅ Sector indices holdings endpoint: Retrieved ${sectorIndicesHoldings.data.length} holdings`);
-      
-      console.log('\nTesting sector indices performance endpoint...');
-      const sectorIndicesPerformance = await client.sectorIndicesPerformance.get({ 
-        index_id: indexId,
-        startDate: tenDaysAgo.toISOString().split('T')[0],
-        endDate: yesterday.toISOString().split('T')[0]
-      });
-      assert(sectorIndicesPerformance.data !== undefined, 'Sector indices performance endpoint failed');
-      console.log(`✅ Sector indices performance endpoint: Retrieved ${sectorIndicesPerformance.data.length} data points`);
-      
-      console.log('\nTesting sector index transaction endpoint...');
-      const sectorIndexTransaction = await client.sectorIndexTransaction.get({ 
-        index_id: indexId,
-        startDate: tenDaysAgo.toISOString().split('T')[0],
-        endDate: yesterday.toISOString().split('T')[0]
-      });
-      assert(sectorIndexTransaction.data !== undefined, 'Sector index transaction endpoint failed');
-      console.log(`✅ Sector index transaction endpoint: Retrieved ${sectorIndexTransaction.data.length} transactions`);
-    } else {
-      console.log('\n⚠️ Could not test index-related endpoints because no index_id was found');
-    }
+    console.log('\nTesting sector indices performance endpoint...');
+    const sectorIndicesPerformance = await client.sectorIndicesPerformance.get({ 
+      index_id: 'index_id',
+      startDate: tenDaysAgo.toISOString().split('T')[0],
+      endDate: yesterday.toISOString().split('T')[0]
+    });
+    assert(sectorIndicesPerformance.data !== undefined, 'Sector indices performance endpoint failed');
+    console.log(`✅ Sector indices performance endpoint: Retrieved ${sectorIndicesPerformance.data.length} data points`);
+    
+    console.log('\nTesting sector index transaction endpoint...');
+    const sectorIndexTransaction = await client.sectorIndexTransaction.get({ 
+      index_id: 'index_id',
+      startDate: tenDaysAgo.toISOString().split('T')[0],
+      endDate: yesterday.toISOString().split('T')[0]
+    });
+    assert(sectorIndexTransaction.data !== undefined, 'Sector index transaction endpoint failed');
+    console.log(`✅ Sector index transaction endpoint: Retrieved ${sectorIndexTransaction.data.length} transactions`);
     
   } catch (error) {
     console.error(`❌ New endpoints test failed: ${error instanceof Error ? error.message : String(error)}`);
