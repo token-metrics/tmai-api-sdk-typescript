@@ -44,10 +44,8 @@ export class TokenMetricsClient {
   readonly dailyOhlcv: DailyOHLCVEndpoint;
   readonly investorGrades: InvestorGradesEndpoint;
   readonly traderGrades: TraderGradesEndpoint;
-  readonly traderIndices: TraderIndicesEndpoint;
   readonly marketMetrics: MarketMetricsEndpoint;
   readonly aiReports: AIReportsEndpoint;
-  readonly investorIndices: InvestorIndicesEndpoint;
   readonly cryptoInvestors: CryptoInvestorsEndpoint;
   readonly topMarketCapTokens: TopMarketCapTokensEndpoint;
   readonly resistanceSupport: ResistanceSupportEndpoint;
