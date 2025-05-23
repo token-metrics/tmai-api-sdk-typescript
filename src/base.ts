@@ -40,7 +40,7 @@ export class BaseEndpoint {
     const url = `${this.baseUrl}/${endpoint}`;
     const headers: Record<string, string> = {
       'accept': 'application/json',
-      'api_key': this.client.apiKey
+      'x-api-key': this.client.apiKey
     };
 
     try {
@@ -146,33 +146,34 @@ export class BaseEndpoint {
     customLimit: number | null = null
   ): Promise<ApiResponse<T>> {
     const endpointLimits: EndpointLimits = {
-      'daily-ohlcv': 100,
-      'hourly-ohlcv': 1000,
-      'trader-grades': 1000,
-      'investor-grades': 1000,
-      'market-metrics': 1000,
-      'trader-indices': 1000,
-      'trading-signals': 1000,
-      'investor-indices': 1000,
-      'crypto-investors': 1000,
-      'top-market-cap-tokens': 1000,
-      'resistance-support': 1000,
-      'price': 1000,
-      'sentiments': 1000,
-      'quantmetrics': 1000,
-      'scenario-analysis': 1000,
-      'correlation': 1000,
-      'sector-indices-holdings': 1000,
-      'index-specific-performance': 1000,
-      'sector-index-transaction': 1000,
-      'default': 1000
+      'daily-ohlcv': 50,
+      'hourly-ohlcv': 50,
+      'trader-grades': 50,
+      'investor-grades': 50,
+      'market-metrics': 50,
+      'trader-indices': 50,
+      'trading-signals': 50,
+      'investor-indices': 50,
+      'crypto-investors': 50,
+      'top-market-cap-tokens': 50,
+      'resistance-support': 50,
+      'price': 50,
+      'sentiments': 50,
+      'quantmetrics': 50,
+      'scenario-analysis': 50,
+      'correlation': 50,
+      'sector-indices-holdings': 50,
+      'index-specific-performance': 50,
+      'sector-index-transaction': 50,
+      'default': 50
     };
 
     const startDate = params.startDate;
     const endDate = params.endDate;
 
-    const limit = customLimit !== null ? customLimit : 
-      (endpointLimits[endpoint] || endpointLimits.default);
+    const limit = customLimit !== null ? 
+      Math.min(customLimit, 100) : 
+      Math.min(endpointLimits[endpoint] || endpointLimits.default, 100);
 
     params.limit = limit;
 
@@ -199,7 +200,7 @@ export class BaseEndpoint {
       }
 
       chunkParams.limit = limit;
-      chunkParams.page = 0;
+      chunkParams.page = 1;
 
       try {
         const response = await this._request<any>(method, endpoint, chunkParams, null);
