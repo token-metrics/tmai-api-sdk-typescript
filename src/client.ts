@@ -16,9 +16,6 @@ import { SentimentEndpoint } from './endpoints/sentiment';
 import { QuantmetricsEndpoint } from './endpoints/quantmetrics';
 import { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis';
 import { CorrelationEndpoint } from './endpoints/correlation';
-import { SectorIndicesHoldingsEndpoint } from './endpoints/sector_indices_holdings';
-import { SectorIndicesPerformanceEndpoint } from './endpoints/sector_indices_performance';
-import { SectorIndexTransactionEndpoint } from './endpoints/sector_index_transaction';
 
 /**
  * Main client for interacting with the Token Metrics AI API.
@@ -54,9 +51,6 @@ export class TokenMetricsClient {
   readonly quantmetrics: QuantmetricsEndpoint;
   readonly scenarioAnalysis: ScenarioAnalysisEndpoint;
   readonly correlation: CorrelationEndpoint;
-  readonly sectorIndicesHoldings: SectorIndicesHoldingsEndpoint;
-  readonly sectorIndicesPerformance: SectorIndicesPerformanceEndpoint;
-  readonly sectorIndexTransaction: SectorIndexTransactionEndpoint;
 
   /**
    * Initialize the Token Metrics client.
@@ -83,8 +77,5 @@ export class TokenMetricsClient {
     this.quantmetrics = new QuantmetricsEndpoint(this);
     this.scenarioAnalysis = new ScenarioAnalysisEndpoint(this);
     this.correlation = new CorrelationEndpoint(this);
-    this.sectorIndicesHoldings = new SectorIndicesHoldingsEndpoint(this);
-    this.sectorIndicesPerformance = new SectorIndicesPerformanceEndpoint(this);
-    this.sectorIndexTransaction = new SectorIndexTransactionEndpoint(this);
   }
 }
