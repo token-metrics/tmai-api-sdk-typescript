@@ -162,6 +162,9 @@ export class BaseEndpoint {
       'quantmetrics': 50,
       'scenario-analysis': 50,
       'correlation': 50,
+      'indices': 50,
+      'indices-holdings': 50,
+      'indices-performance': 50,
       'default': 50
     };
 

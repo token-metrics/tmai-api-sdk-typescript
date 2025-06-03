@@ -125,6 +125,60 @@ export interface CorrelationData {
 }
 
 /**
+ * Indices filter parameters
+ */
+export interface IndicesParams extends PaginationParams {
+  indicesType?: string;
+}
+
+/**
+ * Indices holdings parameters
+ */
+export interface IndicesHoldingsParams {
+  id: string;
+}
+
+/**
+ * Indices performance parameters
+ */
+export interface IndicesPerformanceParams extends DateRangeParams, PaginationParams {
+  id: string;
+}
+
+/**
+ * Index data structure
+ */
+export interface IndexData {
+  id: string;
+  name: string;
+  type: string;
+  [key: string]: any;
+}
+
+/**
+ * Index holding data structure
+ */
+export interface IndexHoldingData {
+  token_id: string;
+  symbol: string;
+  name: string;
+  weight: number;
+  market_cap: number;
+  icon_url?: string;
+  [key: string]: any;
+}
+
+/**
+ * Index performance data structure
+ */
+export interface IndexPerformanceData {
+  id: string;
+  timestamp: string;
+  performance: number;
+  [key: string]: any;
+}
+
+/**
  * Endpoint limits configuration
  */
 export interface EndpointLimits {
