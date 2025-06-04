@@ -66,6 +66,28 @@ client.aiAgent.ask('What is your analysis of Bitcoin?')
     console.log(answer);
   });
 
+// Get indices overview
+client.indices.get({ indicesType: 'active' })
+  .then(indices => {
+    console.log(indices);
+  });
+
+// Get indices holdings
+client.indicesHoldings.get({ id: 'crypto-index-1' })
+  .then(holdings => {
+    console.log(holdings);
+  });
+
+// Get indices performance
+client.indicesPerformance.get({
+  id: 'crypto-index-1',
+  startDate: '2023-10-01',
+  endDate: '2023-10-10'
+})
+  .then(performance => {
+    console.log(performance);
+  });
+
 // Using async/await with type annotations
 async function getTokenData(): Promise<void> {
   const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
@@ -129,6 +151,9 @@ async function getTokenData() {
 | `quantmetrics` | Quantitative metrics | `client.quantmetrics.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `scenarioAnalysis` | Market scenario analysis | `client.scenarioAnalysis.get({ symbol: 'BTC' })` |
 | `correlation` | Asset correlation data | `client.correlation.get({ base_symbol: 'BTC', quote_symbol: 'ETH', startDate: '2023-10-01', endDate: '2023-10-10' })` |
+| `indices` | Overview of active/passive indices | `client.indices.get({ indicesType: 'active' })` |
+| `indicesHoldings` | Token holdings with icons, weight, and market cap | `client.indicesHoldings.get({ id: 'index_id' })` |
+| `indicesPerformance` | Index performance across different timeframes | `client.indicesPerformance.get({ id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 
 
 
