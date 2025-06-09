@@ -66,6 +66,16 @@ client.aiAgent.ask('What is your analysis of Bitcoin?')
     console.log(answer);
   });
 
+// Get hourly trading signals
+client.hourlyTradingSignals.get({
+  token_id: '3375', // Bitcoin token ID
+  limit: 10,
+  page: 1
+})
+  .then(signals => {
+    console.log(signals);
+  });
+
 // Get indices overview
 client.indices.get({ indicesType: 'active' })
   .then(indices => {
@@ -123,6 +133,15 @@ client.traderGrades.get({
     console.log(traderGrades);
   });
 
+// Get hourly trading signals
+client.hourlyTradingSignals.get({
+  token_id: '3375', 
+  limit: 20
+})
+  .then(signals => {
+    console.log(signals);
+  });
+
 // Using async/await
 async function getTokenData() {
   const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
@@ -143,6 +162,7 @@ async function getTokenData() {
 | `aiAgent` | Interact with Token Metrics AI chatbot | `client.aiAgent.ask('What is your Bitcoin forecast?')` |
 | `aiReports` | AI-generated analysis reports | `client.aiReports.get({ symbol: 'BTC,ETH' })` |
 | `tradingSignals` | AI-generated trading signals | `client.tradingSignals.get({ symbol: 'BTC,ETH', startDate: '2023-10-01', endDate: '2023-10-10', signal: '1' })` |
+| `hourlyTradingSignals` | Hourly AI-generated trading signals | `client.hourlyTradingSignals.get({ token_id: '3375'})` |
 | `cryptoInvestors` | Information about crypto investors | `client.cryptoInvestors.get()` |
 | `topMarketCapTokens` | Top tokens by market capitalization | `client.topMarketCapTokens.get({ top_k: 100 })` |
 | `resistanceSupport` | Resistance and support levels | `client.resistanceSupport.get({ symbol: 'BTC' })` |

@@ -184,3 +184,17 @@ export interface IndexPerformanceData {
 export interface EndpointLimits {
   [endpoint: string]: number;
 }
+
+/**
+ * Hourly trading signal data structure
+ */
+export interface HourlyTradingSignalData {
+  TIMESTAMP: string;
+  TOKEN_ID: number;
+  TOKEN_NAME: string;
+  TOKEN_SYMBOL: string;
+  CLOSE: number;
+  SIGNAL: string;
+  POSITION: string;
+  [key: string]: any;
+}
