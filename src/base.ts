@@ -153,6 +153,7 @@ export class BaseEndpoint {
       'market-metrics': 50,
       'trader-indices': 50,
       'trading-signals': 50,
+      'hourly-trading-signals': 50,
       'investor-indices': 50,
       'crypto-investors': 50,
       'top-market-cap-tokens': 50,

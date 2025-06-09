@@ -2,6 +2,7 @@
 import { TokensEndpoint } from './endpoints/tokens';
 import { AIAgentEndpoint } from './endpoints/ai_agent';
 import { TradingSignalsEndpoint } from './endpoints/trading_signals';
+import { HourlyTradingSignalsEndpoint } from './endpoints/hourly_trading_signals';
 import { HourlyOHLCVEndpoint } from './endpoints/hourly_ohlcv';
 import { DailyOHLCVEndpoint } from './endpoints/daily_ohlcv';
 import { InvestorGradesEndpoint } from './endpoints/investor_grades';
@@ -40,6 +41,7 @@ export class TokenMetricsClient {
   readonly tokens: TokensEndpoint;
   readonly aiAgent: AIAgentEndpoint;
   readonly tradingSignals: TradingSignalsEndpoint;
+  readonly hourlyTradingSignals: HourlyTradingSignalsEndpoint;
   readonly hourlyOhlcv: HourlyOHLCVEndpoint;
   readonly dailyOhlcv: DailyOHLCVEndpoint;
   readonly investorGrades: InvestorGradesEndpoint;
@@ -69,6 +71,7 @@ export class TokenMetricsClient {
     this.tokens = new TokensEndpoint(this);
     this.aiAgent = new AIAgentEndpoint(this);
     this.tradingSignals = new TradingSignalsEndpoint(this);
+    this.hourlyTradingSignals = new HourlyTradingSignalsEndpoint(this);
     this.hourlyOhlcv = new HourlyOHLCVEndpoint(this);
     this.dailyOhlcv = new DailyOHLCVEndpoint(this);
     this.investorGrades = new InvestorGradesEndpoint(this);
