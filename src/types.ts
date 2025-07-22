@@ -198,3 +198,27 @@ export interface HourlyTradingSignalData {
   POSITION: string;
   [key: string]: any;
 }
+
+/**
+ * Moonshot token filter parameters
+ */
+export interface MoonshotTokenParams extends PaginationParams {
+  type?: 'active' | 'past';
+}
+
+/**
+ * Moonshot token data structure
+ */
+export interface MoonshotToken {
+  LAST_TRADING_SIGNAL_TIME: string;
+  TM_TRADER_GRADE: string;
+  TM_TRADER_GRADE_24H_PCT_CHANGE: string;
+  PRICE_CHANGE_PERCENTAGE_7D_IN_CURRENCY: string;
+  MARKET_CAP: string;
+  VOLUME_24H: string;
+  MOONSHOT_END_AT: string | null;
+  MOONSHOT_AT: string;
+  MOONSHOT_ROI: number;
+  TOKEN_NAME: string;
+  TOKEN_SYMBOL: string;
+}
