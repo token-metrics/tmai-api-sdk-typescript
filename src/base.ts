@@ -166,6 +166,7 @@ export class BaseEndpoint {
       'indices': 50,
       'indices-holdings': 50,
       'indices-performance': 50,
+      'moonshot-tokens': 50,
       'default': 50
     };
 

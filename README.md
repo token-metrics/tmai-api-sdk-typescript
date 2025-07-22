@@ -174,7 +174,7 @@ async function getTokenData() {
 | `indices` | Overview of active/passive indices | `client.indices.get({ indicesType: 'active' })` |
 | `indicesHoldings` | Token holdings with icons, weight, and market cap | `client.indicesHoldings.get({ id: 'index_id' })` |
 | `indicesPerformance` | Index performance across different timeframes | `client.indicesPerformance.get({ id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-
+| `moonshotTokens` | Get AI-curated token picks with high breakout potential | `client.moonshotTokens.get({ type: 'active' })` |
 
 
 ## Authentication

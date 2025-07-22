@@ -20,6 +20,7 @@ import { CorrelationEndpoint } from './endpoints/correlation';
 import { IndicesEndpoint } from './endpoints/indices';
 import { IndicesHoldingsEndpoint } from './endpoints/indices_holdings';
 import { IndicesPerformanceEndpoint } from './endpoints/indices_performance';
+import { MoonshotTokensEndpoint } from './endpoints/moonshot_tokens';
 
 /**
  * Main client for interacting with the Token Metrics AI API.
@@ -59,6 +60,7 @@ export class TokenMetricsClient {
   readonly indices: IndicesEndpoint;
   readonly indicesHoldings: IndicesHoldingsEndpoint;
   readonly indicesPerformance: IndicesPerformanceEndpoint;
+  readonly moonshotTokens: MoonshotTokensEndpoint;
 
   /**
    * Initialize the Token Metrics client.
@@ -89,5 +91,6 @@ export class TokenMetricsClient {
     this.indices = new IndicesEndpoint(this);
     this.indicesHoldings = new IndicesHoldingsEndpoint(this);
     this.indicesPerformance = new IndicesPerformanceEndpoint(this);
+    this.moonshotTokens = new MoonshotTokensEndpoint(this);
   }
 }
