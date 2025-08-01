@@ -13,7 +13,6 @@ import { CryptoInvestorsEndpoint } from './endpoints/crypto_investors';
 import { TopMarketCapTokensEndpoint } from './endpoints/top_market_cap_tokens';
 import { ResistanceSupportEndpoint } from './endpoints/resistance_support';
 import { PriceEndpoint } from './endpoints/price';
-import { SentimentEndpoint } from './endpoints/sentiment';
 import { QuantmetricsEndpoint } from './endpoints/quantmetrics';
 import { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis';
 import { CorrelationEndpoint } from './endpoints/correlation';
@@ -53,7 +52,6 @@ export class TokenMetricsClient {
   readonly topMarketCapTokens: TopMarketCapTokensEndpoint;
   readonly resistanceSupport: ResistanceSupportEndpoint;
   readonly price: PriceEndpoint;
-  readonly sentiment: SentimentEndpoint;
   readonly quantmetrics: QuantmetricsEndpoint;
   readonly scenarioAnalysis: ScenarioAnalysisEndpoint;
   readonly correlation: CorrelationEndpoint;
@@ -84,7 +82,6 @@ export class TokenMetricsClient {
     this.topMarketCapTokens = new TopMarketCapTokensEndpoint(this);
     this.resistanceSupport = new ResistanceSupportEndpoint(this);
     this.price = new PriceEndpoint(this);
-    this.sentiment = new SentimentEndpoint(this);
     this.quantmetrics = new QuantmetricsEndpoint(this);
     this.scenarioAnalysis = new ScenarioAnalysisEndpoint(this);
     this.correlation = new CorrelationEndpoint(this);

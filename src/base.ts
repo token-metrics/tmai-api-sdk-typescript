@@ -159,7 +159,6 @@ export class BaseEndpoint {
       'top-market-cap-tokens': 50,
       'resistance-support': 50,
       'price': 50,
-      'sentiments': 50,
       'quantmetrics': 50,
       'scenario-analysis': 50,
       'correlation': 50,
