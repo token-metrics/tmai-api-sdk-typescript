@@ -5,8 +5,6 @@ import { TradingSignalsEndpoint } from './endpoints/trading_signals';
 import { HourlyTradingSignalsEndpoint } from './endpoints/hourly_trading_signals';
 import { HourlyOHLCVEndpoint } from './endpoints/hourly_ohlcv';
 import { DailyOHLCVEndpoint } from './endpoints/daily_ohlcv';
-import { InvestorGradesEndpoint } from './endpoints/investor_grades';
-import { TraderGradesEndpoint } from './endpoints/trader_grades';
 import { MarketMetricsEndpoint } from './endpoints/market_metrics';
 import { AIReportsEndpoint } from './endpoints/ai_reports';
 import { CryptoInvestorsEndpoint } from './endpoints/crypto_investors';
@@ -46,8 +44,6 @@ export class TokenMetricsClient {
   readonly hourlyTradingSignals: HourlyTradingSignalsEndpoint;
   readonly hourlyOhlcv: HourlyOHLCVEndpoint;
   readonly dailyOhlcv: DailyOHLCVEndpoint;
-  readonly investorGrades: InvestorGradesEndpoint;
-  readonly traderGrades: TraderGradesEndpoint;
   readonly marketMetrics: MarketMetricsEndpoint;
   readonly aiReports: AIReportsEndpoint;
   readonly cryptoInvestors: CryptoInvestorsEndpoint;
@@ -78,8 +74,6 @@ export class TokenMetricsClient {
     this.hourlyTradingSignals = new HourlyTradingSignalsEndpoint(this);
     this.hourlyOhlcv = new HourlyOHLCVEndpoint(this);
     this.dailyOhlcv = new DailyOHLCVEndpoint(this);
-    this.investorGrades = new InvestorGradesEndpoint(this);
-    this.traderGrades = new TraderGradesEndpoint(this);
     this.marketMetrics = new MarketMetricsEndpoint(this);
     this.aiReports = new AIReportsEndpoint(this);
     this.cryptoInvestors = new CryptoInvestorsEndpoint(this);

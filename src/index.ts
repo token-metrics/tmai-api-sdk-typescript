@@ -11,8 +11,6 @@ export { AIAgentEndpoint } from './endpoints/ai_agent';
 export { TradingSignalsEndpoint } from './endpoints/trading_signals';
 export { HourlyOHLCVEndpoint } from './endpoints/hourly_ohlcv';
 export { DailyOHLCVEndpoint } from './endpoints/daily_ohlcv';
-export { InvestorGradesEndpoint } from './endpoints/investor_grades';
-export { TraderGradesEndpoint } from './endpoints/trader_grades';
 export { MarketMetricsEndpoint } from './endpoints/market_metrics';
 export { AIReportsEndpoint } from './endpoints/ai_reports';
 export { CryptoInvestorsEndpoint } from './endpoints/crypto_investors';
