@@ -40,26 +40,6 @@ client.tokens.get({ symbol: 'BTC,ETH' })
     console.log(tokens);
   });
 
-// Get short-term trading grades
-client.traderGrades.get({
-  symbol: 'BTC,ETH',
-  startDate: '2023-10-01',
-  endDate: '2023-10-10'
-})
-  .then(traderGrades => {
-    console.log(traderGrades);
-  });
-
-// Get long-term investment grades
-client.investorGrades.get({
-  symbol: 'BTC,ETH',
-  startDate: '2023-10-01',
-  endDate: '2023-10-10'
-})
-  .then(investorGrades => {
-    console.log(investorGrades);
-  });
-
 // Ask the AI agent a question
 client.aiAgent.ask('What is your analysis of Bitcoin?')
   .then(answer => {
@@ -151,16 +131,6 @@ const client = new TokenMetricsClient('your-api-key');
 client.tokens.get({ symbol: 'BTC,ETH' })
   .then(tokens => {
     console.log(tokens);
-  });
-
-// Get short-term trading grades
-client.traderGrades.get({
-  symbol: 'BTC,ETH',
-  startDate: '2023-10-01',
-  endDate: '2023-10-10'
-})
-  .then(traderGrades => {
-    console.log(traderGrades);
   });
 
 // Get hourly trading signals
