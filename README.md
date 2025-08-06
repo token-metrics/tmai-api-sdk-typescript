@@ -98,6 +98,36 @@ client.indicesPerformance.get({
     console.log(performance);
   });
 
+// Get TM Grades
+client.tmGrades.get({ token_id: '3375' })
+  .then(grades => {
+    console.log(grades);
+  });
+
+// Get TM Grades Historical
+client.tmGrades.getHistorical({ 
+  token_id: '3375',
+  startDate: '2025-07-01',
+  endDate: '2025-07-05',
+  limit: 100,
+  page: 1
+})
+  .then(historicalGrades => {
+    console.log(historicalGrades);
+  });
+
+// Get Technology Grades
+client.technologyGrades.get({ 
+  symbol: 'BTC',
+  startDate: '2025-07-01',
+  endDate: '2025-07-05',
+  limit: 50,
+  page: 1
+})
+  .then(techGrades => {
+    console.log(techGrades);
+  });
+
 // Using async/await with type annotations
 async function getTokenData(): Promise<void> {
   const tokens = await client.tokens.get({ symbol: 'BTC,ETH' });
@@ -174,6 +204,9 @@ async function getTokenData() {
 | `indicesHoldings` | Token holdings with icons, weight, and market cap | `client.indicesHoldings.get({ id: 'index_id' })` |
 | `indicesPerformance` | Index performance across different timeframes | `client.indicesPerformance.get({ id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `moonshotTokens` | Get AI-curated token picks with high breakout potential | `client.moonshotTokens.get({ type: 'active' })` |
+| `tmGrades` | Latest TM Grade and Fundamental Grade insights with signals and momentum | `client.tmGrades.get({ token_id: '12345' })` |
+| `tmGrades.getHistorical` | Historical TM Grade and Fundamental Grade data over a date range | `client.tmGrades.getHistorical({ token_id: '12345', startDate: '2023-10-01', endDate: '2023-10-10', limit: 100, page: 1 })` |
+| `technologyGrades` | Technology Grade reflecting tech strength and innovation ranking with date ranges | `client.technologyGrades.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
 
 
 ## Authentication
