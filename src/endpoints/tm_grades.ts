@@ -6,6 +6,8 @@ import { GradeData, DateRangeParams, PaginationParams, ApiResponse } from '../ty
  */
 export interface TMGradesParams {
   token_id?: string;
+  token_name?: string;
+  symbol?: string;
 }
 
 /**
@@ -13,6 +15,8 @@ export interface TMGradesParams {
  */
 export interface TMGradesHistoricalParams extends DateRangeParams, PaginationParams {
   token_id?: string;
+  token_name?: string;
+  symbol?: string;
 }
 
 /**
@@ -24,6 +28,8 @@ export class TMGradesEndpoint extends BaseEndpoint {
    * 
    * @param options - Query parameters
    * @param options.token_id - Token ID to get grades for
+   * @param options.token_name - Crypto Asset Names (e.g., Bitcoin, Ethereum)
+   * @param options.symbol - Token symbol (e.g., BTC, ETH)
    * @returns - TM Grades data
    */
   async get(options: TMGradesParams = {}): Promise<ApiResponse<GradeData>> {
@@ -35,10 +41,12 @@ export class TMGradesEndpoint extends BaseEndpoint {
    * 
    * @param options - Query parameters
    * @param options.token_id - Token ID to get historical grades for
+   * @param options.token_name - Crypto Asset Names (e.g., Bitcoin, Ethereum)
+   * @param options.symbol - Token symbol (e.g., BTC, ETH)
    * @param options.startDate - Start date in YYYY-MM-DD format
    * @param options.endDate - End date in YYYY-MM-DD format
-   * @param options.limit - Number of results to return per page
-   * @param options.page - Page number for pagination
+   * @param options.limit - Number of results to return per page (defaults to 50)
+   * @param options.page - Page number for pagination (defaults to 1)
    * @returns - Historical TM Grades data with all pages and date ranges combined
    * 
    * Note:
