@@ -78,8 +78,20 @@ client.indicesPerformance.get({
     console.log(performance);
   });
 
-// Get TM Grades
+// Get TM Grades (multiple filter options)
 client.tmGrades.get({ token_id: '3375' })
+  .then(grades => {
+    console.log(grades);
+  });
+
+// Get TM Grades by symbol
+client.tmGrades.get({ symbol: 'BTC' })
+  .then(grades => {
+    console.log(grades);
+  });
+
+// Get TM Grades by token name
+client.tmGrades.get({ token_name: 'Bitcoin' })
   .then(grades => {
     console.log(grades);
   });
@@ -96,16 +108,64 @@ client.tmGrades.getHistorical({
     console.log(historicalGrades);
   });
 
-// Get Technology Grades
-client.technologyGrades.get({ 
+// Get Technology Grades (multiple filter options)
+client.technologyGrades.get({ token_id: '3306' })
+  .then(techGrades => {
+    console.log(techGrades);
+  });
+
+// Get Technology Grades by symbol
+client.technologyGrades.get({ symbol: 'ETH' })
+  .then(techGrades => {
+    console.log(techGrades);
+  });
+
+// Get Technology Grades by token name
+client.technologyGrades.get({ token_name: 'Ethereum' })
+  .then(techGrades => {
+    console.log(techGrades);
+  });
+
+// Get Technology Grades Historical
+client.technologyGrades.getHistorical({ 
   symbol: 'BTC',
   startDate: '2025-07-01',
   endDate: '2025-07-05',
   limit: 50,
   page: 1
 })
-  .then(techGrades => {
-    console.log(techGrades);
+  .then(historicalTechGrades => {
+    console.log(historicalTechGrades);
+  });
+
+// Get Fundamental Grades (multiple filter options)
+client.fundamentalGrades.get({ token_id: '3375' })
+  .then(fundamentalGrades => {
+    console.log(fundamentalGrades);
+  });
+
+// Get Fundamental Grades by symbol
+client.fundamentalGrades.get({ symbol: 'BTC' })
+  .then(fundamentalGrades => {
+    console.log(fundamentalGrades);
+  });
+
+// Get Fundamental Grades by token name
+client.fundamentalGrades.get({ token_name: 'Bitcoin' })
+  .then(fundamentalGrades => {
+    console.log(fundamentalGrades);
+  });
+
+// Get Fundamental Grades Historical
+client.fundamentalGrades.getHistorical({ 
+  symbol: 'ETH',
+  startDate: '2025-07-01',
+  endDate: '2025-07-05',
+  limit: 50,
+  page: 1
+})
+  .then(historicalFundamentalGrades => {
+    console.log(historicalFundamentalGrades);
   });
 
 // Using async/await with type annotations
@@ -172,9 +232,12 @@ async function getTokenData() {
 | `indicesHoldings` | Token holdings with icons, weight, and market cap | `client.indicesHoldings.get({ id: 'index_id' })` |
 | `indicesPerformance` | Index performance across different timeframes | `client.indicesPerformance.get({ id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
 | `moonshotTokens` | Get AI-curated token picks with high breakout potential | `client.moonshotTokens.get({ type: 'active' })` |
-| `tmGrades` | Latest TM Grade and Fundamental Grade insights with signals and momentum | `client.tmGrades.get({ token_id: '12345' })` |
-| `tmGrades.getHistorical` | Historical TM Grade and Fundamental Grade data over a date range | `client.tmGrades.getHistorical({ token_id: '12345', startDate: '2023-10-01', endDate: '2023-10-10', limit: 100, page: 1 })` |
-| `technologyGrades` | Technology Grade reflecting tech strength and innovation ranking with date ranges | `client.technologyGrades.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
+| `tmGrades` | Latest TM Grade and Fundamental Grade insights with signals and momentum | `client.tmGrades.get({ token_id: '3375' })` or `client.tmGrades.get({ symbol: 'BTC' })` or `client.tmGrades.get({ token_name: 'Bitcoin' })` |
+| `tmGrades.getHistorical` | Historical TM Grade and Fundamental Grade data over a date range | `client.tmGrades.getHistorical({ token_id: '3375', startDate: '2023-10-01', endDate: '2023-10-10', limit: 100, page: 1 })` |
+| `technologyGrades` | Technology Grade insights including activity, security, repository, collaboration, and DeFi scanner scores | `client.technologyGrades.get({ token_id: '3306' })` or `client.technologyGrades.get({ symbol: 'ETH' })` or `client.technologyGrades.get({ token_name: 'Ethereum' })` |
+| `technologyGrades.getHistorical` | Historical Technology Grade data over a date range with all scoring metrics | `client.technologyGrades.getHistorical({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
+| `fundamentalGrades` | Fundamental Grade insights including grade class, community score, exchange score, VC score, tokenomics score, and DeFi scanner score | `client.fundamentalGrades.get({ token_id: '3375' })` or `client.fundamentalGrades.get({ symbol: 'BTC' })` or `client.fundamentalGrades.get({ token_name: 'Bitcoin' })` |
+| `fundamentalGrades.getHistorical` | Historical Fundamental Grade data over a date range with all scoring metrics | `client.fundamentalGrades.getHistorical({ symbol: 'ETH', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
 
 
 ## Authentication

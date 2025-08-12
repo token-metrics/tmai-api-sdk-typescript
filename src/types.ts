@@ -38,6 +38,7 @@ export interface DateRangeParams {
  */
 export interface TokenFilterParams {
   token_id?: string;
+  token_name?: string;
   symbol?: string;
   category?: string;
   exchange?: string;
