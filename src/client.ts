@@ -20,6 +20,7 @@ import { IndicesPerformanceEndpoint } from './endpoints/indices_performance';
 import { MoonshotTokensEndpoint } from './endpoints/moonshot_tokens';
 import { TMGradesEndpoint } from './endpoints/tm_grades';
 import { TechnologyGradesEndpoint } from './endpoints/technology_grades';
+import { FundamentalGradesEndpoint } from './endpoints/fundamental_grades';
 
 /**
  * Main client for interacting with the Token Metrics AI API.
@@ -59,6 +60,7 @@ export class TokenMetricsClient {
   readonly moonshotTokens: MoonshotTokensEndpoint;
   readonly tmGrades: TMGradesEndpoint;
   readonly technologyGrades: TechnologyGradesEndpoint;
+  readonly fundamentalGrades: FundamentalGradesEndpoint;
 
   /**
    * Initialize the Token Metrics client.
@@ -89,5 +91,6 @@ export class TokenMetricsClient {
     this.moonshotTokens = new MoonshotTokensEndpoint(this);
     this.tmGrades = new TMGradesEndpoint(this);
     this.technologyGrades = new TechnologyGradesEndpoint(this);
+    this.fundamentalGrades = new FundamentalGradesEndpoint(this);
   }
 }

@@ -26,3 +26,4 @@ export { IndicesPerformanceEndpoint } from './endpoints/indices_performance';
 export { MoonshotTokensEndpoint } from './endpoints/moonshot_tokens';
 export { TMGradesEndpoint } from './endpoints/tm_grades';
 export { TechnologyGradesEndpoint } from './endpoints/technology_grades';
+export { FundamentalGradesEndpoint } from './endpoints/fundamental_grades';
