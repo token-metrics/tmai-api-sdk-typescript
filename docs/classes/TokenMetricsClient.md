@@ -24,7 +24,7 @@ Main client for interacting with the Token Metrics AI API.
 - [price](TokenMetricsClient.md#price)
 - [quantmetrics](TokenMetricsClient.md#quantmetrics)
 - [resistanceSupport](TokenMetricsClient.md#resistancesupport)
-- [scenarioAnalysis](TokenMetricsClient.md#scenarioanalysis)
+- [pricePrediction](TokenMetricsClient.md#priceprediction)
 - [sectorIndexTransaction](TokenMetricsClient.md#sectorindextransaction)
 - [sectorIndicesHoldings](TokenMetricsClient.md#sectorindicesholdings)
 - [sectorIndicesPerformance](TokenMetricsClient.md#sectorindicesperformance)
@@ -181,9 +181,9 @@ ___
 
 ___
 
-### scenarioAnalysis
+### pricePrediction
 
-• `Readonly` **scenarioAnalysis**: `ScenarioAnalysisEndpoint`
+• `Readonly` **pricePrediction**: `PricePredictionEndpoint`
 
 #### Defined in
 

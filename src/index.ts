@@ -18,7 +18,7 @@ export { TopMarketCapTokensEndpoint } from './endpoints/top_market_cap_tokens';
 export { ResistanceSupportEndpoint } from './endpoints/resistance_support';
 export { PriceEndpoint } from './endpoints/price';
 export { QuantmetricsEndpoint } from './endpoints/quantmetrics';
-export { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis';
+export { PricePredictionEndpoint } from './endpoints/price_prediction';
 export { CorrelationEndpoint } from './endpoints/correlation';
 export { IndicesEndpoint } from './endpoints/indices';
 export { IndicesHoldingsEndpoint } from './endpoints/indices_holdings';

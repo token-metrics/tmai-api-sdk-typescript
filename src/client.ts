@@ -12,7 +12,7 @@ import { TopMarketCapTokensEndpoint } from './endpoints/top_market_cap_tokens';
 import { ResistanceSupportEndpoint } from './endpoints/resistance_support';
 import { PriceEndpoint } from './endpoints/price';
 import { QuantmetricsEndpoint } from './endpoints/quantmetrics';
-import { ScenarioAnalysisEndpoint } from './endpoints/scenario_analysis';
+import { PricePredictionEndpoint } from './endpoints/price_prediction';
 import { CorrelationEndpoint } from './endpoints/correlation';
 import { IndicesEndpoint } from './endpoints/indices';
 import { IndicesHoldingsEndpoint } from './endpoints/indices_holdings';
@@ -52,7 +52,7 @@ export class TokenMetricsClient {
   readonly resistanceSupport: ResistanceSupportEndpoint;
   readonly price: PriceEndpoint;
   readonly quantmetrics: QuantmetricsEndpoint;
-  readonly scenarioAnalysis: ScenarioAnalysisEndpoint;
+  readonly pricePrediction: PricePredictionEndpoint;
   readonly correlation: CorrelationEndpoint;
   readonly indices: IndicesEndpoint;
   readonly indicesHoldings: IndicesHoldingsEndpoint;
@@ -83,7 +83,7 @@ export class TokenMetricsClient {
     this.resistanceSupport = new ResistanceSupportEndpoint(this);
     this.price = new PriceEndpoint(this);
     this.quantmetrics = new QuantmetricsEndpoint(this);
-    this.scenarioAnalysis = new ScenarioAnalysisEndpoint(this);
+    this.pricePrediction = new PricePredictionEndpoint(this);
     this.correlation = new CorrelationEndpoint(this);
     this.indices = new IndicesEndpoint(this);
     this.indicesHoldings = new IndicesHoldingsEndpoint(this);
