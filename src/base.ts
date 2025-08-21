@@ -160,7 +160,7 @@ export class BaseEndpoint {
       'resistance-support': 50,
       'price': 50,
       'quantmetrics': 50,
-      'scenario-analysis': 50,
+      'price-prediction': 50,
       'correlation': 50,
       'indices': 50,
       'indices-holdings': 50,
