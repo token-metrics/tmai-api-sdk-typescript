@@ -105,9 +105,6 @@ jobs:
     strategy:
       matrix:
         instance:
-          - name: "DO"
-            token: "SONAR_TOKEN_APP"
-            url: "http://sonarqube.tokenmetrics.com"
           - name: "AKS"
             token: "SONAR_AKS_TOKEN"
             url: "http://sonarqube-aks.tokenmetrics.com"
@@ -180,8 +177,7 @@ jobs:
           echo "### Results:" >> $GITHUB_STEP_SUMMARY
           echo "- SonarQube Quality Gate: ${{ steps.sonarqube-quality-gate.outputs.status }}" >> $GITHUB_STEP_SUMMARY
           echo "- Security vulnerabilities will be reported in SonarQube dashboard" >> $GITHUB_STEP_SUMMARY
-          echo "- View DO detailed results at: http://sonarqube.tokenmetrics.com/dashboard?id=tmai-api-sdk-typescript" >> $GITHUB_STEP_SUMMARY
-          echo "- View AKS detailed results at: http://sonarqube-aks.tokenmetrics.com/dashboard?id=tmai-api-sdk-typescript" >> $GITHUB_STEP_SUMMARY
+          echo "- View detailed results at: http://sonarqube-aks.tokenmetrics.com/dashboard?id=tmai-api-sdk-typescript" >> $GITHUB_STEP_SUMMARY
 
       # ----- Cleanup Virtual Environment -----
       - name: Cleanup
