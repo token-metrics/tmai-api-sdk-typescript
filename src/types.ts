@@ -246,14 +246,28 @@ export interface EndpointLimits {
  * Hourly trading signal data structure
  */
 export interface HourlyTradingSignalData {
-  TIMESTAMP: string;
-  TOKEN_ID: number;
-  TOKEN_NAME: string;
-  TOKEN_SYMBOL: string;
-  CLOSE: number;
-  SIGNAL: string;
-  POSITION: string;
+  timestamp: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  close: number;
+  signal: number;
+  signal_str: string;
+  position: number;
+  position_str: string;
+  app_link: string;
   [key: string]: any;
+}
+
+/**
+ * Hourly trading signals filter parameters
+ */
+export interface HourlyTradingSignalsParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
 }
 
 /**
