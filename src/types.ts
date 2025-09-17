@@ -103,7 +103,10 @@ export interface Token {
  * OHLCV data structure
  */
 export interface OHLCVData {
-  symbol: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
   timestamp: string;
   open: number;
   high: number;
