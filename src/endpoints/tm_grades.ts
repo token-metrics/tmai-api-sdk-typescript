@@ -1,61 +1,41 @@
 import { BaseEndpoint } from '../base';
-import { GradeData, DateRangeParams, PaginationParams, ApiResponse } from '../types';
+import { TMGradesParams, TMGradesHistoricalParams, TMGradeData, TMGradeHistoricalData, PaginatedApiResponse } from '../types';
 
 /**
- * TM Grades endpoint parameters
- */
-export interface TMGradesParams {
-  token_id?: string;
-  token_name?: string;
-  symbol?: string;
-}
-
-/**
- * TM Grades Historical endpoint parameters
- */
-export interface TMGradesHistoricalParams extends DateRangeParams, PaginationParams {
-  token_id?: string;
-  token_name?: string;
-  symbol?: string;
-}
-
-/**
- * Endpoint for accessing TM Grades (Token Metrics Grades) and Fundamental Grade insights
+ * Endpoint for accessing TM Grades (Token Metrics Grades)
  */
 export class TMGradesEndpoint extends BaseEndpoint {
   /**
-   * Get the latest TM Grade and Fundamental Grade insights for a token, including signals, momentum, and 24‑hour percentage changes.
+   * Get the latest TM Grade for a token, including trader grade change, quant grade, signals, momentum, and 24-hour percentage changes for both TM Grade and Trader Grade.
    * 
    * @param options - Query parameters
-   * @param options.token_id - Token ID to get grades for
+   * @param options.token_id - Token ID to get grades for. Example: 3375
    * @param options.token_name - Crypto Asset Names (e.g., Bitcoin, Ethereum)
    * @param options.symbol - Token symbol (e.g., BTC, ETH)
-   * @returns - TM Grades data
+   * @param options.slug - Comma separated token slugs. Example: bitcoin,ethereum
+   * @param options.limit - Limit the number of items in response. Defaults to 50
+   * @param options.page - Page number for pagination. Defaults to 1
+   * @returns - TM Grades data with pagination
    */
-  async get(options: TMGradesParams = {}): Promise<ApiResponse<GradeData>> {
-    return this._paginatedRequest<GradeData>('get', 'tm-grade', options);
+  async get(options: TMGradesParams = {}): Promise<PaginatedApiResponse<TMGradeData>> {
+    return this._request<PaginatedApiResponse<TMGradeData>>('get', 'tm-grade', options);
   }
 
   /**
-   * Retrieve historical TM Grade and Fundamental Grade data for a token over a specified date range, including signals and momentum trends.
+   * Get historical TM Grade data for a token, including trader grade change, quant grade, signals, momentum, and 24-hour percentage changes for both TM Grade and Trader Grade over time.
    * 
    * @param options - Query parameters
-   * @param options.token_id - Token ID to get historical grades for
+   * @param options.token_id - Token ID to get historical grades for. Example: 3375
    * @param options.token_name - Crypto Asset Names (e.g., Bitcoin, Ethereum)
    * @param options.symbol - Token symbol (e.g., BTC, ETH)
-   * @param options.startDate - Start date in YYYY-MM-DD format
-   * @param options.endDate - End date in YYYY-MM-DD format
-   * @param options.limit - Number of results to return per page (defaults to 50)
-   * @param options.page - Page number for pagination (defaults to 1)
-   * @returns - Historical TM Grades data with all pages and date ranges combined
-   * 
-   * Note:
-   * This method handles the API's 29-day limit limitation by:
-   * 1. Automatically chunking the date range into 29-day periods
-   * 2. Logging progress during fetching
-   * 3. Combining all results into a single response
+   * @param options.slug - Comma separated token slugs. Example: bitcoin,ethereum
+   * @param options.start_date - Start Date accepts date as a string - YYYY-MM-DD format. Example: 2025-07-01
+   * @param options.end_date - End Date accepts date as a string - YYYY-MM-DD format. Example: 2025-07-05
+   * @param options.limit - Limit the number of items in response. Defaults to 50
+   * @param options.page - Page number for pagination. Defaults to 1
+   * @returns - Historical TM Grades data with pagination
    */
-  async getHistorical(options: TMGradesHistoricalParams = {}): Promise<ApiResponse<GradeData>> {
-    return this._paginatedRequest<GradeData>('get', 'tm-grade-history', options, 29);
+  async getHistorical(options: TMGradesHistoricalParams = {}): Promise<PaginatedApiResponse<TMGradeHistoricalData>> {
+    return this._request<PaginatedApiResponse<TMGradeHistoricalData>>('get', 'tm-grade-history', options);
   }
 }

@@ -490,3 +490,50 @@ export interface PricePredictionData {
   price_prediction: PricePredictionScenario[];
   [key: string]: any;
 }
+
+/**
+ * TM grades filter parameters
+ */
+export interface TMGradesParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * TM grades historical filter parameters
+ */
+export interface TMGradesHistoricalParams extends DateRangeParams, PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * TM grade data structure
+ */
+export interface TMGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  tm_grade: number;
+  tm_grade_24_h_pct_change: number;
+  tm_trader_grade_24_h_change: number;
+  quant_grade: number;
+  tm_grade_signal: string;
+  momentum: string;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * TM grade historical data structure
+ */
+export interface TMGradeHistoricalData extends TMGradeData {
+  date: string;
+  trading_signal: number;
+  trading_signal_str: string;
+}
