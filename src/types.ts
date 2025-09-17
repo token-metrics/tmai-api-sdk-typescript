@@ -291,3 +291,16 @@ export interface PaginatedApiResponse<T> {
     limit: number;
   };
 }
+
+/**
+ * Price data structure
+ */
+export interface PriceData {
+  token_id: number;
+  current_price: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  app_link: string;
+  [key: string]: any;
+}

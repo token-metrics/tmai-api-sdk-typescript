@@ -1,30 +1,21 @@
 import { BaseEndpoint } from '../base';
-import { TokenFilterParams, DateRangeParams, ApiResponse } from '../types';
+import { TokenFilterParams, PriceData, PaginatedApiResponse } from '../types';
 
 /**
- * Interface for price data
- */
-interface PriceData {
-  symbol: string;
-  timestamp: string;
-  price: number;
-  [key: string]: any;
-}
-
-/**
- * Endpoint for accessing historical price data
+ * Endpoint for accessing token price data
  */
 export class PriceEndpoint extends BaseEndpoint {
   /**
-   * Get historical price data with automatic date chunking and pagination.
+   * Get token prices based on the provided token ids.
    * 
    * @param options - Query parameters
-   * @param options.symbol - Comma-separated Token Symbols (e.g., "BTC,ETH")
-   * @param options.startDate - Start date in YYYY-MM-DD format
-   * @param options.endDate - End date in YYYY-MM-DD format
-   * @returns - Price data with all pages and date ranges combined
+   * @param options.token_id - Comma-separated Token IDs. Example: 3375,3306
+   * @param options.token_name - Comma-separated Crypto Asset Names (e.g., Bitcoin, Ethereum)
+   * @param options.symbol - Comma-separated Token Symbols. Example: BTC,ETH
+   * @param options.slug - Comma-separated token slugs. Example: bitcoin,ethereum
+   * @returns - Price data
    */
-  async get(options: Pick<TokenFilterParams, 'symbol'> & DateRangeParams = {}): Promise<ApiResponse<PriceData>> {
-    return this._paginatedRequest<PriceData>('get', 'price', options, 29);
+  async get(options: Pick<TokenFilterParams, 'token_id' | 'token_name' | 'symbol' | 'slug'> = {}): Promise<PaginatedApiResponse<PriceData>> {
+    return this._request<PaginatedApiResponse<PriceData>>('get', 'price', options);
   }
 }
