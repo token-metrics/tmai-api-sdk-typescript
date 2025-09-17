@@ -554,3 +554,26 @@ export interface TMGradeHistoricalData extends TMGradeData {
   trading_signal: number;
   trading_signal_str: string;
 }
+
+/**
+ * AI reports filter parameters
+ */
+export interface AIReportsParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+}
+
+/**
+ * AI report data structure
+ */
+export interface AIReportData {
+  token_id: number;
+  token_symbol: string;
+  token_name: string;
+  investment_analysis_pointer: string;
+  investment_analysis: string;
+  deep_dive: string;
+  code_review: string;
+  [key: string]: any;
+}
