@@ -446,3 +446,47 @@ export interface FundamentalGradesHistoricalParams extends DateRangeParams, Pagi
   symbol?: string;
   slug?: string;
 }
+
+/**
+ * Price prediction filter parameters
+ */
+export interface PricePredictionParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Price prediction scenario data structure
+ */
+export interface PricePredictionScenario {
+  scenario: number;
+  predicted_fdv_base: number;
+  predicted_fdv_bear: number;
+  predicted_fdv_moon: number;
+  predicted_roi_base: number;
+  predicted_roi_bear: number;
+  predicted_roi_moon: number;
+  predicted_mcap_base: number;
+  predicted_mcap_bear: number;
+  predicted_mcap_moon: number;
+  total_mcap_scenario: number;
+  predicted_price_base: number;
+  predicted_price_bear: number;
+  predicted_price_moon: number;
+}
+
+/**
+ * Price prediction data structure
+ */
+export interface PricePredictionData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  app_link: string;
+  price_prediction: PricePredictionScenario[];
+  [key: string]: any;
+}
