@@ -334,3 +334,30 @@ export interface TechnologyGradeData {
   app_link: string;
   [key: string]: any;
 }
+
+/**
+ * Quantmetrics data structure
+ */
+export interface QuantmetricsData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  volatility: number;
+  all_time_return: number;
+  cap: number;
+  sharpe: number;
+  sortino: number;
+  max_drawdown: number;
+  skew: number;
+  tail_ratio: number;
+  risk_reward_ratio: number;
+  profit_factor: number;
+  kurtosis: number;
+  daily_value_at_risk: number;
+  daily_return_avg: number;
+  daily_return_std: number;
+  app_link: string;
+  [key: string]: any;
+}
