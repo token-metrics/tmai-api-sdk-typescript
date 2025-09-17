@@ -13,8 +13,8 @@ export class TradingSignalsEndpoint extends BaseEndpoint {
    * @param options.token_name - Comma-separated Crypto Asset Names (e.g., Bitcoin, Ethereum)
    * @param options.symbol - Comma-separated Token Symbols (e.g., "BTC,ETH")
    * @param options.slug - Comma-separated token slugs. Example: bitcoin,ethereum
-   * @param options.startDate - Start date in YYYY-MM-DD format. Example: 2023-10-01
-   * @param options.endDate - End date in YYYY-MM-DD format. Example: 2023-10-10
+   * @param options.start_date - Start date in YYYY-MM-DD format. Example: 2023-10-01
+   * @param options.end_date - End date in YYYY-MM-DD format. Example: 2023-10-10
    * @param options.category - Comma-separated category name. Example: layer-1,nft
    * @param options.exchange - Comma-separated exchange name. Example: binance,gate
    * @param options.marketcap - Minimum MarketCap in $. Example: 1000000000

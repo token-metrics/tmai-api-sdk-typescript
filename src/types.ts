@@ -29,8 +29,8 @@ export interface PaginationParams {
  * Date range parameters
  */
 export interface DateRangeParams {
-  startDate?: string;
-  endDate?: string;
+  start_date?: string;
+  end_date?: string;
 }
 
 /**
@@ -312,6 +312,25 @@ export interface PriceData {
   token_name: string;
   token_symbol: string;
   slug: string;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Technology Grade data structure
+ */
+export interface TechnologyGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date?: string;
+  technology_grade: number;
+  activity_score: number;
+  security_score: number;
+  repository_score: number;
+  collaboration_score: number;
+  defi_scanner_score: number;
   app_link: string;
   [key: string]: any;
 }
