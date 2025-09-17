@@ -127,18 +127,28 @@ export interface GradeData {
 }
 
 /**
- * AI Agent message
+ * AI Agent message structure
  */
 export interface AIAgentMessage {
   user: string;
 }
 
 /**
- * AI Agent response
+ * AI Agent thread message structure
+ */
+export interface AIAgentThreadMessage {
+  user?: string;
+  chatbot?: string;
+}
+
+/**
+ * AI Agent response structure
  */
 export interface AIAgentResponse {
-  answer?: string;
-  [key: string]: any;
+  success: boolean;
+  message: string;
+  answer: string;
+  thread: AIAgentThreadMessage[];
 }
 
 /**
