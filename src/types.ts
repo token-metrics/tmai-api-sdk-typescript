@@ -261,23 +261,31 @@ export interface HourlyTradingSignalData {
  */
 export interface MoonshotTokenParams extends PaginationParams {
   type?: 'active' | 'past';
+  sort_by?: 'moonshot_at' | 'roi_pct' | 'tm_grade' | 'market_cap_usd';
 }
 
 /**
  * Moonshot token data structure
  */
 export interface MoonshotToken {
-  LAST_TRADING_SIGNAL_TIME: string;
-  TM_TRADER_GRADE: string;
-  TM_TRADER_GRADE_24H_PCT_CHANGE: string;
-  PRICE_CHANGE_PERCENTAGE_7D_IN_CURRENCY: string;
-  MARKET_CAP: string;
-  VOLUME_24H: string;
-  MOONSHOT_END_AT: string | null;
-  MOONSHOT_AT: string;
-  MOONSHOT_ROI: number;
-  TOKEN_NAME: string;
-  TOKEN_SYMBOL: string;
+  token_id: string;
+  last_trading_signal_time: string;
+  tm_grade: number;
+  tm_grade_24_h_change_pct: number;
+  price_change_percentage_7d_in_currency: number;
+  market_cap_usd: number;
+  volume_24_h_usd: number;
+  moonshot_end_at: string | null;
+  moonshot_at: string;
+  moonshot_roi: number;
+  currency: string;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  last_trading_signal: number;
+  last_trading_signal_str: string;
+  app_link: string;
+  [key: string]: any;
 }
 
 /**
