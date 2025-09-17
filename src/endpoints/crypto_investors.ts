@@ -1,26 +1,19 @@
 import { BaseEndpoint } from '../base';
-import { ApiResponse } from '../types';
-
-/**
- * Interface for crypto investor data
- */
-interface CryptoInvestorData {
-  id: string;
-  name: string;
-  [key: string]: any;
-}
+import { CryptoInvestorsParams, CryptoInvestorData, PaginatedApiResponse } from '../types';
 
 /**
  * Endpoint for accessing information about crypto investors
  */
 export class CryptoInvestorsEndpoint extends BaseEndpoint {
   /**
-   * Get information about crypto investors.
+   * Get the latest list of crypto investors and their scores.
    * 
    * @param options - Query parameters
-   * @returns - Crypto investors data
+   * @param options.limit - Limit the number of items in response. Defaults to 50
+   * @param options.page - Page number for pagination. Defaults to 1
+   * @returns - Crypto investors data with pagination
    */
-  async get(options: Record<string, any> = {}): Promise<ApiResponse<CryptoInvestorData>> {
-    return this._request<ApiResponse<CryptoInvestorData>>('get', 'crypto-investors', options);
+  async get(options: CryptoInvestorsParams = {}): Promise<PaginatedApiResponse<CryptoInvestorData>> {
+    return this._request<PaginatedApiResponse<CryptoInvestorData>>('get', 'crypto-investors', options);
   }
 }

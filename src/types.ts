@@ -577,3 +577,21 @@ export interface AIReportData {
   code_review: string;
   [key: string]: any;
 }
+
+/**
+ * Crypto investors filter parameters
+ */
+export interface CryptoInvestorsParams extends PaginationParams {}
+
+/**
+ * Crypto investor data structure
+ */
+export interface CryptoInvestorData {
+  investor_name: string;
+  investor_website: string;
+  investor_twitter: string;
+  round_count: number;
+  roi_average: number;
+  roi_median: number;
+  [key: string]: any;
+}
