@@ -29,7 +29,7 @@ export class TokenMetricsClient {
   /**
    * Base URL for the Token Metrics API
    */
-  static readonly BASE_URL = "https://api.tokenmetrics.com/v2";
+  static readonly BASE_URL = "https://api.tokenmetrics.com/v3";
 
   /**
    * API key for authentication

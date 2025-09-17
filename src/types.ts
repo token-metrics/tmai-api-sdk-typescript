@@ -36,7 +36,7 @@ export interface DateRangeParams {
 /**
  * Token filter parameters
  */
-export interface TokenFilterParams {
+export interface TokenFilterParams extends PaginationParams {
   token_id?: string;
   token_name?: string;
   symbol?: string;
@@ -45,15 +45,50 @@ export interface TokenFilterParams {
   marketcap?: string;
   volume?: string;
   fdv?: string;
+  slug?: string;
+  expand?: string;
+  blockchain_address?: string;
+}
+
+/**
+ * Exchange data structure
+ */
+export interface ExchangeData {
+  exchange_id: string;
+  exchange_name: string;
+}
+
+/**
+ * Category data structure  
+ */
+export interface CategoryData {
+  category_id: number;
+  category_name: string;
+  category_slug: string;
 }
 
 /**
  * Token data structure
  */
 export interface Token {
-  id: string;
-  symbol: string;
-  name: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  exchange_list: ExchangeData[];
+  category_list: CategoryData[];
+  contract_address: Record<string, any>;
+  current_price: number;
+  market_cap: number;
+  total_volume: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  fully_diluted_valuation: number;
+  high_24_h: number;
+  low_24_h: number;
+  price_change_percentage_24_h_in_currency: number;
+  app_link: string;
   [key: string]: any;
 }
 
@@ -222,4 +257,19 @@ export interface MoonshotToken {
   MOONSHOT_ROI: number;
   TOKEN_NAME: string;
   TOKEN_SYMBOL: string;
+}
+
+/**
+ * Paginated API response structure
+ */
+export interface PaginatedApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T[];
+  pagination: {
+    total: number;
+    total_pages: number;
+    current_page: number;
+    limit: number;
+  };
 }
