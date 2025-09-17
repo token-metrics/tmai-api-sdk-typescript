@@ -407,3 +407,42 @@ export interface ResistanceSupportData {
   app_link: string;
   [key: string]: any;
 }
+
+/**
+ * Fundamental grades filter parameters
+ */
+export interface FundamentalGradesParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Fundamental grade data structure
+ */
+export interface FundamentalGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  fundamental_grade: number;
+  fundamental_grade_class: string;
+  community_score: number;
+  exchange_score: number;
+  vc_score: number;
+  tokenomics_score: number;
+  defi_scanner_score: number;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Fundamental Grades Historical endpoint parameters
+ */
+export interface FundamentalGradesHistoricalParams extends DateRangeParams, PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
