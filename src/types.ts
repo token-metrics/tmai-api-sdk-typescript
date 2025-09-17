@@ -595,3 +595,11 @@ export interface CryptoInvestorData {
   roi_median: number;
   [key: string]: any;
 }
+
+/**
+ * Top market cap tokens filter parameters
+ */
+export interface TopMarketCapTokensParams {
+  top_k?: number;
+  expand?: string;
+}
