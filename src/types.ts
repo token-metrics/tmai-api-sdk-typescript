@@ -163,10 +163,27 @@ export interface TradingSignalData {
 }
 
 /**
- * Market metrics data
+ * Market metrics filter parameters
+ */
+export interface MarketMetricsParams extends DateRangeParams, PaginationParams {}
+
+/**
+ * Market metrics data structure
  */
 export interface MarketMetricsData {
-  timestamp: string;
+  date: string;
+  rekt_signal: number;
+  total_crypto_mcap: number;
+  alts_market_cap: number;
+  btc_price: number;
+  btc_market_cap: number;
+  tm_grade_signal: number;
+  tm_grade_perc_high_coins: number;
+  vol_index: number;
+  vol_10: number;
+  vol_90: number;
+  alts_indicator: number;
+  above_ma: number;
   [key: string]: any;
 }
 
