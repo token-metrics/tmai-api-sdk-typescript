@@ -51,6 +51,13 @@ export interface TokenFilterParams extends PaginationParams {
 }
 
 /**
+ * Trading signals filter parameters
+ */
+export interface TradingSignalsParams extends TokenFilterParams, DateRangeParams {
+  signal?: string;
+}
+
+/**
  * Exchange data structure
  */
 export interface ExchangeData {
@@ -135,9 +142,20 @@ export interface AIAgentResponse {
  * Trading signal data
  */
 export interface TradingSignalData {
-  symbol: string;
-  timestamp: string;
-  signal: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  trading_signal: number;
+  trading_signal_str: string;
+  token_trend: number;
+  token_trend_str: string;
+  trading_signals_returns: number;
+  holding_returns: number;
+  app_link: string;
+  tm_grade: number;
+  fundamental_grade: number;
   [key: string]: any;
 }
 

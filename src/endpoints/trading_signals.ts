@@ -1,34 +1,31 @@
 import { BaseEndpoint } from '../base';
-import { TokenFilterParams, DateRangeParams, ApiResponse } from '../types';
-
-/**
- * Interface for trading signal data
- */
-interface TradingSignalData {
-  symbol: string;
-  timestamp: string;
-  signal: string;
-  [key: string]: any;
-}
+import { TradingSignalsParams, TradingSignalData, PaginatedApiResponse } from '../types';
 
 /**
  * Endpoint for accessing AI-generated trading signals
  */
 export class TradingSignalsEndpoint extends BaseEndpoint {
   /**
-   * Get trading signals with automatic date chunking and pagination.
+   * Get AI-generated trading signals for long and short positions for all tokens.
    * 
    * @param options - Query parameters
-   * @param options.token_id - Comma-separated Token IDs
+   * @param options.token_id - Comma-separated Token IDs. Defaults to 3375
+   * @param options.token_name - Comma-separated Crypto Asset Names (e.g., Bitcoin, Ethereum)
    * @param options.symbol - Comma-separated Token Symbols (e.g., "BTC,ETH")
-   * @param options.startDate - Start date in YYYY-MM-DD format
-   * @param options.endDate - End date in YYYY-MM-DD format
-   * @param options.signal - Signal type (e.g., "1" for buy, "0" for neutral, "-1" for sell)
-   * @returns - Trading signals data with all pages and date ranges combined
+   * @param options.slug - Comma-separated token slugs. Example: bitcoin,ethereum
+   * @param options.startDate - Start date in YYYY-MM-DD format. Example: 2023-10-01
+   * @param options.endDate - End date in YYYY-MM-DD format. Example: 2023-10-10
+   * @param options.category - Comma-separated category name. Example: layer-1,nft
+   * @param options.exchange - Comma-separated exchange name. Example: binance,gate
+   * @param options.marketcap - Minimum MarketCap in $. Example: 1000000000
+   * @param options.volume - Minimum 24h trading volume in $. Example: 1000000000
+   * @param options.fdv - Minimum fully diluted valuation in $. Example: 1000000000
+   * @param options.signal - Signal value: bullish (1), bearish (-1) or no signal (0). Example: 1
+   * @param options.limit - Limit the number of items in response. Defaults to 50
+   * @param options.page - Page number for pagination. Defaults to 1
+   * @returns - Trading signals data with pagination
    */
-  async get(options: TokenFilterParams & DateRangeParams & {
-    signal?: string;
-  } = {}): Promise<ApiResponse<TradingSignalData>> {
-    return this._paginatedRequest<TradingSignalData>('get', 'trading-signals', options, 29);
+  async get(options: TradingSignalsParams = {}): Promise<PaginatedApiResponse<TradingSignalData>> {
+    return this._request<PaginatedApiResponse<TradingSignalData>>('get', 'trading-signals', options);
   }
 }
