@@ -57,22 +57,22 @@ client.hourlyTradingSignals.get({
   });
 
 // Get indices overview
-client.indices.get({ indicesType: 'active' })
+client.indices.get({ indices_type: 'active' })
   .then(indices => {
     console.log(indices);
   });
 
 // Get indices holdings
-client.indicesHoldings.get({ id: 'crypto-index-1' })
+client.indicesHoldings.get({ id: 1 })
   .then(holdings => {
     console.log(holdings);
   });
 
 // Get indices performance
 client.indicesPerformance.get({
-  id: 'crypto-index-1',
-  startDate: '2023-10-01',
-  endDate: '2023-10-10'
+  id: 1,
+  start_date: '2023-10-01',
+  end_date: '2023-10-10'
 })
   .then(performance => {
     console.log(performance);
@@ -99,8 +99,8 @@ client.tmGrades.get({ token_name: 'Bitcoin' })
 // Get TM Grades Historical
 client.tmGrades.getHistorical({ 
   token_id: '3375',
-  startDate: '2025-07-01',
-  endDate: '2025-07-05',
+  start_date: '2025-07-01',
+  end_date: '2025-07-05',
   limit: 100,
   page: 1
 })
@@ -129,8 +129,8 @@ client.technologyGrades.get({ token_name: 'Ethereum' })
 // Get Technology Grades Historical
 client.technologyGrades.getHistorical({ 
   symbol: 'BTC',
-  startDate: '2025-07-01',
-  endDate: '2025-07-05',
+  start_date: '2025-07-01',
+  end_date: '2025-07-05',
   limit: 50,
   page: 1
 })
@@ -159,8 +159,8 @@ client.fundamentalGrades.get({ token_name: 'Bitcoin' })
 // Get Fundamental Grades Historical
 client.fundamentalGrades.getHistorical({ 
   symbol: 'ETH',
-  startDate: '2025-07-01',
-  endDate: '2025-07-05',
+  start_date: '2025-07-01',
+  end_date: '2025-07-05',
   limit: 50,
   page: 1
 })
@@ -214,30 +214,30 @@ async function getTokenData() {
 | Endpoint | Description | Example |
 |----------|-------------|---------|
 | `tokens` | Information about all supported tokens | `client.tokens.get({ symbol: 'BTC,ETH' })` |
-| `hourlyOhlcv` | Hourly price and volume data | `client.hourlyOhlcv.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `dailyOhlcv` | Daily price and volume data | `client.dailyOhlcv.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `marketMetrics` | Overall market data | `client.marketMetrics.get({ startDate: '2023-10-01', endDate: '2023-10-10' })` |
+| `hourlyOhlcv` | Hourly price and volume data | `client.hourlyOhlcv.get({ symbol: 'BTC', start_date: '2023-10-01', end_date: '2023-10-10' })` |
+| `dailyOhlcv` | Daily price and volume data | `client.dailyOhlcv.get({ symbol: 'BTC', start_date: '2023-10-01', end_date: '2023-10-10' })` |
+| `marketMetrics` | Overall market data | `client.marketMetrics.get({ start_date: '2023-10-01', end_date: '2023-10-10' })` |
 | `aiAgent` | Interact with Token Metrics AI chatbot | `client.aiAgent.ask('What is your Bitcoin forecast?')` |
 | `aiReports` | AI-generated analysis reports | `client.aiReports.get({ symbol: 'BTC,ETH' })` |
-| `tradingSignals` | AI-generated trading signals | `client.tradingSignals.get({ symbol: 'BTC,ETH', startDate: '2023-10-01', endDate: '2023-10-10', signal: '1' })` |
+| `tradingSignals` | AI-generated trading signals | `client.tradingSignals.get({ symbol: 'BTC,ETH', start_date: '2023-10-01', end_date: '2023-10-10', signal: '1' })` |
 | `hourlyTradingSignals` | Hourly AI-generated trading signals | `client.hourlyTradingSignals.get({ token_id: '3375'})` |
 | `cryptoInvestors` | Information about crypto investors | `client.cryptoInvestors.get()` |
 | `topMarketCapTokens` | Top tokens by market capitalization | `client.topMarketCapTokens.get({ top_k: 100 })` |
 | `resistanceSupport` | Resistance and support levels | `client.resistanceSupport.get({ symbol: 'BTC' })` |
-| `price` | Historical price data | `client.price.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `quantmetrics` | Quantitative metrics | `client.quantmetrics.get({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10' })` |
+| `price` | Historical price data | `client.price.get({ symbol: 'BTC', start_date: '2023-10-01', end_date: '2023-10-10' })` |
+| `quantmetrics` | Quantitative metrics | `client.quantmetrics.get({ symbol: 'BTC', start_date: '2023-10-01', end_date: '2023-10-10' })` |
 | `pricePrediction` | Crypto price predictions under different market scenarios | `client.pricePrediction.get({ symbol: 'BTC' })` |
-| `correlation` | Asset correlation data | `client.correlation.get({ base_symbol: 'BTC', quote_symbol: 'ETH', startDate: '2023-10-01', endDate: '2023-10-10' })` |
-| `indices` | Overview of active/passive indices | `client.indices.get({ indicesType: 'active' })` |
-| `indicesHoldings` | Token holdings with icons, weight, and market cap | `client.indicesHoldings.get({ id: 'index_id' })` |
-| `indicesPerformance` | Index performance across different timeframes | `client.indicesPerformance.get({ id: 'index_id', startDate: '2023-10-01', endDate: '2023-10-10' })` |
+| `correlation` | Asset correlation data | `client.correlation.get({ base_symbol: 'BTC', quote_symbol: 'ETH', start_date: '2023-10-01', end_date: '2023-10-10' })` |
+| `indices` | Overview of active/passive indices with performance metrics | `client.indices.get({ indices_type: 'active' })` |
+| `indicesHoldings` | Current holdings of an index with weight percentages, performance data, and trading grades | `client.indicesHoldings.get({ id: 1 })` |
+| `indicesPerformance` | Historical performance data with cumulative ROI over time | `client.indicesPerformance.get({ id: 1, start_date: '2023-10-01', end_date: '2023-10-10' })` |
 | `moonshotTokens` | Get AI-curated token picks with high breakout potential | `client.moonshotTokens.get({ type: 'active' })` |
 | `tmGrades` | Latest TM Grade and Fundamental Grade insights with signals and momentum | `client.tmGrades.get({ token_id: '3375' })` or `client.tmGrades.get({ symbol: 'BTC' })` or `client.tmGrades.get({ token_name: 'Bitcoin' })` |
-| `tmGrades.getHistorical` | Historical TM Grade and Fundamental Grade data over a date range | `client.tmGrades.getHistorical({ token_id: '3375', startDate: '2023-10-01', endDate: '2023-10-10', limit: 100, page: 1 })` |
+| `tmGrades.getHistorical` | Historical TM Grade and Fundamental Grade data over a date range | `client.tmGrades.getHistorical({ token_id: '3375', start_date: '2023-10-01', end_date: '2023-10-10', limit: 100, page: 1 })` |
 | `technologyGrades` | Technology Grade insights including activity, security, repository, collaboration, and DeFi scanner scores | `client.technologyGrades.get({ token_id: '3306' })` or `client.technologyGrades.get({ symbol: 'ETH' })` or `client.technologyGrades.get({ token_name: 'Ethereum' })` |
-| `technologyGrades.getHistorical` | Historical Technology Grade data over a date range with all scoring metrics | `client.technologyGrades.getHistorical({ symbol: 'BTC', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
+| `technologyGrades.getHistorical` | Historical Technology Grade data over a date range with all scoring metrics | `client.technologyGrades.getHistorical({ symbol: 'BTC', start_date: '2023-10-01', end_date: '2023-10-10', limit: 50, page: 1 })` |
 | `fundamentalGrades` | Fundamental Grade insights including grade class, community score, exchange score, VC score, tokenomics score, and DeFi scanner score | `client.fundamentalGrades.get({ token_id: '3375' })` or `client.fundamentalGrades.get({ symbol: 'BTC' })` or `client.fundamentalGrades.get({ token_name: 'Bitcoin' })` |
-| `fundamentalGrades.getHistorical` | Historical Fundamental Grade data over a date range with all scoring metrics | `client.fundamentalGrades.getHistorical({ symbol: 'ETH', startDate: '2023-10-01', endDate: '2023-10-10', limit: 50, page: 1 })` |
+| `fundamentalGrades.getHistorical` | Historical Fundamental Grade data over a date range with all scoring metrics | `client.fundamentalGrades.getHistorical({ symbol: 'ETH', start_date: '2023-10-01', end_date: '2023-10-10', limit: 50, page: 1 })` |
 
 
 ## Authentication
@@ -324,12 +324,12 @@ app.get('/api/tokens/:symbol', async (req, res) => {
 app.get('/api/trading-signals/:symbol', async (req, res) => {
   try {
     const { symbol } = req.params;
-    const { startDate, endDate, signal } = req.query;
+    const { start_date, end_date, signal } = req.query;
     
     const result = await tmClient.tradingSignals.get({
       symbol,
-      startDate: startDate as string | undefined,
-      endDate: endDate as string | undefined,
+      start_date: start_date as string | undefined,
+      end_date: end_date as string | undefined,
       signal: signal as string | undefined
     });
     
