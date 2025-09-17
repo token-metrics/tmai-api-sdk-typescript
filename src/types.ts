@@ -234,30 +234,40 @@ export interface CorrelationData {
  * Indices filter parameters
  */
 export interface IndicesParams extends PaginationParams {
-  indicesType?: string;
+  indices_type?: string;
 }
 
 /**
  * Indices holdings parameters
  */
 export interface IndicesHoldingsParams {
-  id: string;
+  id: number;
 }
 
 /**
  * Indices performance parameters
  */
 export interface IndicesPerformanceParams extends DateRangeParams, PaginationParams {
-  id: string;
+  id: number;
 }
 
 /**
  * Index data structure
  */
 export interface IndexData {
-  id: string;
+  id: number;
   name: string;
-  type: string;
+  ticker: string;
+  price: number;
+  coins: number;
+  "24_h": number;
+  "7_d": number;
+  "1_m": number;
+  "24_h_volume": number;
+  index_grade: number;
+  all_time: number;
+  market_cap: number;
+  top_gainers_icons: any[];
   [key: string]: any;
 }
 
@@ -265,12 +275,19 @@ export interface IndexData {
  * Index holding data structure
  */
 export interface IndexHoldingData {
-  token_id: string;
-  symbol: string;
-  name: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  coin: string;
+  slug: string;
   weight: number;
   market_cap: number;
-  icon_url?: string;
+  price: number;
+  current_roi: number;
+  trader_grade: number;
+  trader_grade_change_24_h: number;
+  icon: string;
+  date: string;
   [key: string]: any;
 }
 
@@ -278,9 +295,12 @@ export interface IndexHoldingData {
  * Index performance data structure
  */
 export interface IndexPerformanceData {
-  id: string;
-  timestamp: string;
-  performance: number;
+  id: number;
+  date: string;
+  index_cumulative_roi: number;
+  market_cap: number;
+  volume: number;
+  fdv: number;
   [key: string]: any;
 }
 
