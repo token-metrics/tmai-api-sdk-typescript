@@ -198,13 +198,35 @@ export interface MarketMetricsData {
 }
 
 /**
- * Correlation data
+ * Correlation filter parameters
+ */
+export interface CorrelationParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+  category?: string;
+  exchange?: string;
+}
+
+/**
+ * Top correlation item structure
+ */
+export interface TopCorrelationItem {
+  token: string;
+  correlation: number;
+}
+
+/**
+ * Correlation data structure
  */
 export interface CorrelationData {
-  base_symbol: string;
-  quote_symbol: string;
-  timestamp: string;
-  correlation: number;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  top_correlation: TopCorrelationItem[];
   [key: string]: any;
 }
 

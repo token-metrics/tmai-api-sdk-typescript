@@ -1,5 +1,5 @@
 import { BaseEndpoint } from '../base';
-import { FundamentalGradesParams, FundamentalGradeData, FundamentalGradesHistoricalParams, PaginatedApiResponse, ApiResponse, GradeData } from '../types';
+import { FundamentalGradesParams, FundamentalGradeData, FundamentalGradesHistoricalParams, PaginatedApiResponse } from '../types';
 
 /**
  * Endpoint for accessing Fundamental Grades
