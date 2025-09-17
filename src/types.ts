@@ -375,3 +375,35 @@ export interface QuantmetricsData {
   app_link: string;
   [key: string]: any;
 }
+
+/**
+ * Resistance support filter parameters
+ */
+export interface ResistanceSupportParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Historical resistance support level data structure
+ */
+export interface HistoricalResistanceSupportLevel {
+  date: string;
+  level: number;
+}
+
+/**
+ * Resistance support data structure
+ */
+export interface ResistanceSupportData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  historical_resistance_support_levels: HistoricalResistanceSupportLevel[];
+  app_link: string;
+  [key: string]: any;
+}
