@@ -2,14 +2,14 @@ import { BaseEndpoint } from '../base';
 import { AIAgentMessage, AIAgentResponse } from '../types';
 
 /**
- * Endpoint for accessing the AI Agent (chatbot) for token insights
+ * Endpoint for accessing the Token Metrics AI chatbot
  */
 export class AIAgentEndpoint extends BaseEndpoint {
   /**
-   * Send a message to the Token Metrics AI chatbot.
+   * Token Metrics AI is designed to help answer any questions about crypto. In its first version, the chatbot integrates data specifically from Token Metrics, providing targeted and relevant answers to various crypto queries.
    * 
    * @param messages - List of message objects, each containing a "user" key with the message text
-   * @returns - AI chatbot response
+   * @returns - AI chatbot response with conversation thread
    */
   async chat(messages: AIAgentMessage[]): Promise<AIAgentResponse> {
     const payload = {
@@ -22,8 +22,8 @@ export class AIAgentEndpoint extends BaseEndpoint {
   /**
    * Simplified method to ask a single question to the AI chatbot.
    * 
-   * @param question - The question to ask
-   * @returns - AI chatbot response
+   * @param question - The question to ask the AI chatbot
+   * @returns - AI chatbot response with conversation thread
    */
   async ask(question: string): Promise<AIAgentResponse> {
     const messages: AIAgentMessage[] = [{ user: question }];
@@ -33,7 +33,7 @@ export class AIAgentEndpoint extends BaseEndpoint {
   /**
    * Get just the answer text from the AI chatbot response.
    * 
-   * @param question - The question to ask
+   * @param question - The question to ask the AI chatbot
    * @returns - The answer text from the AI chatbot
    */
   async getAnswerText(question: string): Promise<string> {

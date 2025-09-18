@@ -29,14 +29,14 @@ export interface PaginationParams {
  * Date range parameters
  */
 export interface DateRangeParams {
-  startDate?: string;
-  endDate?: string;
+  start_date?: string;
+  end_date?: string;
 }
 
 /**
  * Token filter parameters
  */
-export interface TokenFilterParams {
+export interface TokenFilterParams extends PaginationParams {
   token_id?: string;
   token_name?: string;
   symbol?: string;
@@ -45,15 +45,57 @@ export interface TokenFilterParams {
   marketcap?: string;
   volume?: string;
   fdv?: string;
+  slug?: string;
+  expand?: string;
+  blockchain_address?: string;
+}
+
+/**
+ * Trading signals filter parameters
+ */
+export interface TradingSignalsParams extends TokenFilterParams, DateRangeParams {
+  signal?: string;
+}
+
+/**
+ * Exchange data structure
+ */
+export interface ExchangeData {
+  exchange_id: string;
+  exchange_name: string;
+}
+
+/**
+ * Category data structure  
+ */
+export interface CategoryData {
+  category_id: number;
+  category_name: string;
+  category_slug: string;
 }
 
 /**
  * Token data structure
  */
 export interface Token {
-  id: string;
-  symbol: string;
-  name: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  exchange_list: ExchangeData[];
+  category_list: CategoryData[];
+  contract_address: Record<string, any>;
+  current_price: number;
+  market_cap: number;
+  total_volume: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  fully_diluted_valuation: number;
+  high_24_h: number;
+  low_24_h: number;
+  price_change_percentage_24_h_in_currency: number;
+  app_link: string;
   [key: string]: any;
 }
 
@@ -61,7 +103,10 @@ export interface Token {
  * OHLCV data structure
  */
 export interface OHLCVData {
-  symbol: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
   timestamp: string;
   open: number;
   high: number;
@@ -82,46 +127,106 @@ export interface GradeData {
 }
 
 /**
- * AI Agent message
+ * AI Agent message structure
  */
 export interface AIAgentMessage {
   user: string;
 }
 
 /**
- * AI Agent response
+ * AI Agent thread message structure
+ */
+export interface AIAgentThreadMessage {
+  user?: string;
+  chatbot?: string;
+}
+
+/**
+ * AI Agent response structure
  */
 export interface AIAgentResponse {
-  answer?: string;
-  [key: string]: any;
+  success: boolean;
+  message: string;
+  answer: string;
+  thread: AIAgentThreadMessage[];
 }
 
 /**
  * Trading signal data
  */
 export interface TradingSignalData {
-  symbol: string;
-  timestamp: string;
-  signal: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  trading_signal: number;
+  trading_signal_str: string;
+  token_trend: number;
+  token_trend_str: string;
+  trading_signals_returns: number;
+  holding_returns: number;
+  app_link: string;
+  tm_grade: number;
+  fundamental_grade: number;
   [key: string]: any;
 }
 
 /**
- * Market metrics data
+ * Market metrics filter parameters
+ */
+export interface MarketMetricsParams extends DateRangeParams, PaginationParams {}
+
+/**
+ * Market metrics data structure
  */
 export interface MarketMetricsData {
-  timestamp: string;
+  date: string;
+  rekt_signal: number;
+  total_crypto_mcap: number;
+  alts_market_cap: number;
+  btc_price: number;
+  btc_market_cap: number;
+  tm_grade_signal: number;
+  tm_grade_perc_high_coins: number;
+  vol_index: number;
+  vol_10: number;
+  vol_90: number;
+  alts_indicator: number;
+  above_ma: number;
   [key: string]: any;
 }
 
 /**
- * Correlation data
+ * Correlation filter parameters
+ */
+export interface CorrelationParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+  category?: string;
+  exchange?: string;
+}
+
+/**
+ * Top correlation item structure
+ */
+export interface TopCorrelationItem {
+  token: string;
+  correlation: number;
+}
+
+/**
+ * Correlation data structure
  */
 export interface CorrelationData {
-  base_symbol: string;
-  quote_symbol: string;
-  timestamp: string;
-  correlation: number;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  top_correlation: TopCorrelationItem[];
   [key: string]: any;
 }
 
@@ -129,30 +234,40 @@ export interface CorrelationData {
  * Indices filter parameters
  */
 export interface IndicesParams extends PaginationParams {
-  indicesType?: string;
+  indices_type?: string;
 }
 
 /**
  * Indices holdings parameters
  */
 export interface IndicesHoldingsParams {
-  id: string;
+  id: number;
 }
 
 /**
  * Indices performance parameters
  */
 export interface IndicesPerformanceParams extends DateRangeParams, PaginationParams {
-  id: string;
+  id: number;
 }
 
 /**
  * Index data structure
  */
 export interface IndexData {
-  id: string;
+  id: number;
   name: string;
-  type: string;
+  ticker: string;
+  price: number;
+  coins: number;
+  "24_h": number;
+  "7_d": number;
+  "1_m": number;
+  "24_h_volume": number;
+  index_grade: number;
+  all_time: number;
+  market_cap: number;
+  top_gainers_icons: any[];
   [key: string]: any;
 }
 
@@ -160,12 +275,19 @@ export interface IndexData {
  * Index holding data structure
  */
 export interface IndexHoldingData {
-  token_id: string;
-  symbol: string;
-  name: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  coin: string;
+  slug: string;
   weight: number;
   market_cap: number;
-  icon_url?: string;
+  price: number;
+  current_roi: number;
+  trader_grade: number;
+  trader_grade_change_24_h: number;
+  icon: string;
+  date: string;
   [key: string]: any;
 }
 
@@ -173,9 +295,12 @@ export interface IndexHoldingData {
  * Index performance data structure
  */
 export interface IndexPerformanceData {
-  id: string;
-  timestamp: string;
-  performance: number;
+  id: number;
+  date: string;
+  index_cumulative_roi: number;
+  market_cap: number;
+  volume: number;
+  fdv: number;
   [key: string]: any;
 }
 
@@ -190,14 +315,28 @@ export interface EndpointLimits {
  * Hourly trading signal data structure
  */
 export interface HourlyTradingSignalData {
-  TIMESTAMP: string;
-  TOKEN_ID: number;
-  TOKEN_NAME: string;
-  TOKEN_SYMBOL: string;
-  CLOSE: number;
-  SIGNAL: string;
-  POSITION: string;
+  timestamp: string;
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  close: number;
+  signal: number;
+  signal_str: string;
+  position: number;
+  position_str: string;
+  app_link: string;
   [key: string]: any;
+}
+
+/**
+ * Hourly trading signals filter parameters
+ */
+export interface HourlyTradingSignalsParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
 }
 
 /**
@@ -205,21 +344,314 @@ export interface HourlyTradingSignalData {
  */
 export interface MoonshotTokenParams extends PaginationParams {
   type?: 'active' | 'past';
+  sort_by?: 'moonshot_at' | 'roi_pct' | 'tm_grade' | 'market_cap_usd';
 }
 
 /**
  * Moonshot token data structure
  */
 export interface MoonshotToken {
-  LAST_TRADING_SIGNAL_TIME: string;
-  TM_TRADER_GRADE: string;
-  TM_TRADER_GRADE_24H_PCT_CHANGE: string;
-  PRICE_CHANGE_PERCENTAGE_7D_IN_CURRENCY: string;
-  MARKET_CAP: string;
-  VOLUME_24H: string;
-  MOONSHOT_END_AT: string | null;
-  MOONSHOT_AT: string;
-  MOONSHOT_ROI: number;
-  TOKEN_NAME: string;
-  TOKEN_SYMBOL: string;
+  token_id: string;
+  last_trading_signal_time: string;
+  tm_grade: number;
+  tm_grade_24_h_change_pct: number;
+  price_change_percentage_7d_in_currency: number;
+  market_cap_usd: number;
+  volume_24_h_usd: number;
+  moonshot_end_at: string | null;
+  moonshot_at: string;
+  moonshot_roi: number;
+  currency: string;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  last_trading_signal: number;
+  last_trading_signal_str: string;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Paginated API response structure
+ */
+export interface PaginatedApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T[];
+  pagination: {
+    total: number;
+    total_pages: number;
+    current_page: number;
+    limit: number;
+  };
+}
+
+/**
+ * Price data structure
+ */
+export interface PriceData {
+  token_id: number;
+  current_price: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Technology Grade data structure
+ */
+export interface TechnologyGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date?: string;
+  technology_grade: number;
+  activity_score: number;
+  security_score: number;
+  repository_score: number;
+  collaboration_score: number;
+  defi_scanner_score: number;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Quantmetrics data structure
+ */
+export interface QuantmetricsData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  volatility: number;
+  all_time_return: number;
+  cap: number;
+  sharpe: number;
+  sortino: number;
+  max_drawdown: number;
+  skew: number;
+  tail_ratio: number;
+  risk_reward_ratio: number;
+  profit_factor: number;
+  kurtosis: number;
+  daily_value_at_risk: number;
+  daily_return_avg: number;
+  daily_return_std: number;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Resistance support filter parameters
+ */
+export interface ResistanceSupportParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Historical resistance support level data structure
+ */
+export interface HistoricalResistanceSupportLevel {
+  date: string;
+  level: number;
+}
+
+/**
+ * Resistance support data structure
+ */
+export interface ResistanceSupportData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  historical_resistance_support_levels: HistoricalResistanceSupportLevel[];
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Fundamental grades filter parameters
+ */
+export interface FundamentalGradesParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Fundamental grade data structure
+ */
+export interface FundamentalGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  fundamental_grade: number;
+  fundamental_grade_class: string;
+  community_score: number;
+  exchange_score: number;
+  vc_score: number;
+  tokenomics_score: number;
+  defi_scanner_score: number;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * Fundamental Grades Historical endpoint parameters
+ */
+export interface FundamentalGradesHistoricalParams extends DateRangeParams, PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Price prediction filter parameters
+ */
+export interface PricePredictionParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * Price prediction scenario data structure
+ */
+export interface PricePredictionScenario {
+  scenario: number;
+  predicted_fdv_base: number;
+  predicted_fdv_bear: number;
+  predicted_fdv_moon: number;
+  predicted_roi_base: number;
+  predicted_roi_bear: number;
+  predicted_roi_moon: number;
+  predicted_mcap_base: number;
+  predicted_mcap_bear: number;
+  predicted_mcap_moon: number;
+  total_mcap_scenario: number;
+  predicted_price_base: number;
+  predicted_price_bear: number;
+  predicted_price_moon: number;
+}
+
+/**
+ * Price prediction data structure
+ */
+export interface PricePredictionData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  date: string;
+  app_link: string;
+  price_prediction: PricePredictionScenario[];
+  [key: string]: any;
+}
+
+/**
+ * TM grades filter parameters
+ */
+export interface TMGradesParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * TM grades historical filter parameters
+ */
+export interface TMGradesHistoricalParams extends DateRangeParams, PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+  slug?: string;
+}
+
+/**
+ * TM grade data structure
+ */
+export interface TMGradeData {
+  token_id: number;
+  token_name: string;
+  token_symbol: string;
+  slug: string;
+  tm_grade: number;
+  tm_grade_24_h_pct_change: number;
+  tm_trader_grade_24_h_change: number;
+  quant_grade: number;
+  tm_grade_signal: string;
+  momentum: string;
+  app_link: string;
+  [key: string]: any;
+}
+
+/**
+ * TM grade historical data structure
+ */
+export interface TMGradeHistoricalData extends TMGradeData {
+  date: string;
+  trading_signal: number;
+  trading_signal_str: string;
+}
+
+/**
+ * AI reports filter parameters
+ */
+export interface AIReportsParams extends PaginationParams {
+  token_id?: string;
+  token_name?: string;
+  symbol?: string;
+}
+
+/**
+ * AI report data structure
+ */
+export interface AIReportData {
+  token_id: number;
+  token_symbol: string;
+  token_name: string;
+  investment_analysis_pointer: string;
+  investment_analysis: string;
+  deep_dive: string;
+  code_review: string;
+  [key: string]: any;
+}
+
+/**
+ * Crypto investors filter parameters
+ */
+export interface CryptoInvestorsParams extends PaginationParams {}
+
+/**
+ * Crypto investor data structure
+ */
+export interface CryptoInvestorData {
+  investor_name: string;
+  investor_website: string;
+  investor_twitter: string;
+  round_count: number;
+  roi_average: number;
+  roi_median: number;
+  [key: string]: any;
+}
+
+/**
+ * Top market cap tokens filter parameters
+ */
+export interface TopMarketCapTokensParams {
+  top_k?: number;
+  expand?: string;
 }

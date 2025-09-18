@@ -1,19 +1,21 @@
 import { BaseEndpoint } from '../base';
-import { DateRangeParams, MarketMetricsData, ApiResponse } from '../types';
+import { MarketMetricsParams, MarketMetricsData, PaginatedApiResponse } from '../types';
 
 /**
  * Endpoint for accessing overall market data
  */
 export class MarketMetricsEndpoint extends BaseEndpoint {
   /**
-   * Get market metrics data with automatic date chunking and pagination.
+   * Get the Market Analytics from Token Metrics. They provide insight into the full Crypto Market, including the Bullish/Bearish Market indicator.
    * 
    * @param options - Query parameters
-   * @param options.startDate - Start date in YYYY-MM-DD format
-   * @param options.endDate - End date in YYYY-MM-DD format
-   * @returns - Market metrics data with all pages and date ranges combined
+   * @param options.start_date - Start Date accepts date as a string - YYYY-MM-DD format. Example: 2023-10-01
+   * @param options.end_date - End Date accepts date as a string - YYYY-MM-DD format. Example: 2023-10-10
+   * @param options.limit - Limit the number of items in response. Defaults to 50
+   * @param options.page - Page number for pagination. Defaults to 1
+   * @returns - Market metrics data with pagination
    */
-  async get(options: DateRangeParams = {}): Promise<ApiResponse<MarketMetricsData>> {
-    return this._paginatedRequest<MarketMetricsData>('get', 'market-metrics', options, 29);
+  async get(options: MarketMetricsParams = {}): Promise<PaginatedApiResponse<MarketMetricsData>> {
+    return this._request<PaginatedApiResponse<MarketMetricsData>>('get', 'market-metrics', options);
   }
 }
